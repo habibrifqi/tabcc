@@ -17,8 +17,8 @@ include_once "display_mining.php";
                     Proses Apriori
                 </h1>
             </div><!-- /.page-header -->
-            
-<?php
+
+            <?php
 //object database class
 $db_object = new database();
 
@@ -35,14 +35,18 @@ if (isset($_POST['submit'])) {
     if (empty($_POST['min_support']) || empty($_POST['min_confidence'])) {
         $can_process = false;
         ?>
-        <script> location.replace("?menu=proses_apriori&pesan_error=Min Support dan Min Confidence harus diisi");</script>
-        <?php
+            <script>
+                location.replace("?menu=proses_apriori&pesan_error=Min Support dan Min Confidence harus diisi");
+            </script>
+            <?php
     }
     if(!is_numeric($_POST['min_support']) || !is_numeric($_POST['min_confidence'])){
         $can_process = false;
         ?>
-        <script> location.replace("?menu=proses_apriori&pesan_error=Min Support dan Min Confidence harus diisi angka");</script>
-        <?php
+            <script>
+                location.replace("?menu=proses_apriori&pesan_error=Min Support dan Min Confidence harus diisi angka");
+            </script>
+            <?php
     }
     //  01/09/2016 - 30/09/2016
 
@@ -81,50 +85,58 @@ if (isset($_POST['submit'])) {
         }
         //show form for update
         ?>
-        <div class="row">
-            <div class="col-sm-12">
-            
-                <form method="post" action="">
-                    <div class="col-lg-6 " >
-                        <!-- Date range -->
-                        <div class="form-group">
-                            <label>Tanggal: </label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="text" class="form-control pull-right" name="range_tanggal"
-                                       id="id-date-range-picker-1" required="" placeholder="Date range" 
-                                       value="<?php echo $_POST['range_tanggal']; ?>">
-                            </div><!-- /.input group -->
-                        </div><!-- /.form group -->
-                        <div class="form-group">
-                            <input name="search_display" type="submit" value="Search" class="btn btn-default">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 " >
-                        <div class="form-group">
-                            <label>Min Support: </label>
-                            <input name="min_support" type="text" 
-                                   value="<?php echo $_POST['min_support']; ?>"
-                                   class="form-control" placeholder="Min Support">
-                        </div>
-                        <div class="form-group">
-                            <label>Min Confidence: </label>
-                            <input name="min_confidence" type="text"
-                                   value="<?php echo $_POST['min_confidence']; ?>"
-                                   class="form-control" placeholder="Min Confidence">
-                        </div>
-                        <input type="hidden" name="id_process" value="<?php echo $id_process; ?>">
-                        <div class="form-group">
-                            <input name="submit" type="submit" value="Proses" class="btn btn-success">
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form method="post" action="">
+                        <div class="row">
+                            <div class="col-lg-6 ">
+                                <!-- /.form group -->
+                                <!-- Date range -->
+                                <div class="form-group">
+                                    <label>Date range:</label>
 
-                </form>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control float-right" name="range_tanggal"
+                                            id="id-date-range-picker-1" required="" placeholder="Date range"
+                                            value="<?php echo $_POST['range_tanggal']; ?>">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+
+                                <div class="form-group">
+                                    <input name="search_display" type="submit" value="Search" class="btn btn-default">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 ">
+                                <div class="form-group">
+                                    <label>Min Support: </label>
+                                    <input name="min_support" type="text" value="<?php echo $_POST['min_support']; ?>"
+                                        class="form-control" placeholder="Min Support">
+                                </div>
+                                <div class="form-group">
+                                    <label>Min Confidence: </label>
+                                    <input name="min_confidence" type="text"
+                                        value="<?php echo $_POST['min_confidence']; ?>" class="form-control"
+                                        placeholder="Min Confidence">
+                                </div>
+                                <input type="hidden" name="id_process" value="<?php echo $id_process; ?>">
+                                <div class="form-group">
+                                    <input name="submit" type="submit" value="Proses" class="btn btn-success">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-        <?php
+            <?php
 
 
         echo "Min Support Absolut: " . $_POST['min_support'];
@@ -171,43 +183,54 @@ else {
     $query = $db_object->db_query($sql);
     $jumlah = $db_object->db_num_rows($query);
     ?>
-    <form method="post" action="">
-        <div class="row">
-            <div class="col-lg-6 " >
-                <!-- Date range -->
-                <div class="form-group">
-                    <label>Tanggal: </label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
+            <form method="post" action="">
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <!-- Date range -->
+
+
+                        <!-- /.form group -->
+                        <!-- Date range -->
+                        <div class="form-group">
+                            <label>Date range:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control float-right" name="range_tanggal"
+                                    id="reservation" required="" placeholder="Date range"
+                                    value="<?php echo $_POST['range_tanggal']; ?>">
+                            </div>
+                            <!-- /.input group -->
                         </div>
-                        <input type="text" class="form-control pull-right" name="range_tanggal"
-                               id="id-date-range-picker-1" required="" placeholder="Date range" 
-                               value="<?php echo $_POST['range_tanggal']; ?>">
-                    </div><!-- /.input group -->
-                </div><!-- /.form group -->
+                        <!-- /.form group -->
 
 
-                <div class="form-group">
-                    <input name="search_display" type="submit" value="Search" class="btn btn-default">
-                </div>
-            </div>
-            <div class="col-lg-6 " >
-                <div class="form-group">
-                    <input name="min_support" type="text" class="form-control" placeholder="Min Support">
-                </div>
-                <div class="form-group">
-                    <input name="min_confidence" type="text" class="form-control" placeholder="Min Confidence">
-                </div>
-                <div class="form-group">
-                    <input name="submit" type="submit" value="Proses" class="btn btn-success">
-                </div>
-            </div>
+                        <div class="form-group">
+                            <input name="search_display" type="submit" value="Search" class="btn btn-default">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="form-group">
+                            <label>Min Support: </label>
+                            <input name="min_support" type="text" class="form-control" placeholder="Min Support">
+                        </div>
+                        <div class="form-group">
+                            <label>Min Support: </label>
+                            <input name="min_confidence" type="text" class="form-control" placeholder="Min Confidence">
+                        </div>
+                        <div class="form-group">
+                            <input name="submit" type="submit" value="Proses" class="btn btn-success">
+                        </div>
+                    </div>
 
-        </div>
-    </form>
+                </div>
+            </form>
 
-    <?php
+            <?php
     if (!empty($pesan_error)) {
         display_error($pesan_error);
     }
@@ -222,13 +245,13 @@ else {
     } 
     else {
         ?>
-        <table class='table table-bordered table-striped  table-hover'>
-            <tr>
-                <th>No</th>
-                <th>Tanggal</th>
-                <th>Produk</th>
-            </tr>
-            <?php
+            <table class='table table-bordered table-striped  table-hover'>
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Produk</th>
+                </tr>
+                <?php
             $no = 1;
             while ($row = $db_object->db_fetch_array($query)) {
                 echo "<tr>";
@@ -239,13 +262,13 @@ else {
                 $no++;
             }
             ?>
-        </table>
-        <?php
+            </table>
+            <?php
     }           
 }
 ?>
+
+
         </div>
     </div>
 </div>
-
-       

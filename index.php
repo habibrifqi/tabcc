@@ -44,6 +44,8 @@ include_once 'fungsi.php';
   <link rel="stylesheet" href="template/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="template/AdminLTE/plugins/summernote/summernote-bs4.min.css">
+  <!-- T daterange -->
+  <link rel="stylesheet" href="template/AdminLTE/plugins/daterangepicker/daterangepicker.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -181,8 +183,23 @@ include_once 'fungsi.php';
 <script src="template/AdminLTE/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="template/AdminLTE/dist/js/pages/dashboard.js"></script>
+
+<!-- T daterange JS -->
+<script src="template/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+
 <script type="text/javascript">
                     jQuery(function ($) {
+                      $('input[name=range_tanggal]').daterangepicker(
+                        {
+                                'applyClass' : 'btn-sm btn-success',
+                                'cancelClass' : 'btn-sm btn-default',
+                                locale: {
+                                        applyLabel: 'Apply',
+                                        cancelLabel: 'Cancel',
+                                        format: 'DD/MM/YYYY',
+                                }
+                        }
+                      );
                         //datepicker plugin
                         //link
                         $('.date-picker').datepicker({

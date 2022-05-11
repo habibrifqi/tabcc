@@ -198,7 +198,6 @@ include_once 'fungsi.php';
 
                         //to translate the daterange picker, please copy the "examples/daterange-fr.js" contents here before initialization
                         $('input[name=range_tanggal]').daterangepicker(
-                                
                         {
                                 'applyClass' : 'btn-sm btn-success',
                                 'cancelClass' : 'btn-sm btn-default',

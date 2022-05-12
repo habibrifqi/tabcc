@@ -1,6 +1,6 @@
 <?php
 //session_start();
-if (!isset($_SESSION['apriori_parfum_id'])) {
+if (!isset($_SESSION['apriori_tncs_id'])) {
     header("location:index.php?menu=forbidden");
 }
 

@@ -18,14 +18,14 @@ if ($num_rows > 0) {
     $rows = $db->db_fetch_array($result);
     
         unset($_POST); // hapus post form
-        $_SESSION['apriori_parfum_id'] = $rows['id']; // mengisi session
-        $_SESSION['apriori_parfum_username'] = $rows['username'];
-        $_SESSION['apriori_parfum_level'] = $rows['level'];
+        $_SESSION['apriori_tncs_id'] = $rows['id']; // mengisi session
+        $_SESSION['apriori_tncs_username'] = $rows['username'];
+        $_SESSION['apriori_tncs_level'] = $rows['level'];
 
-        $level_name = ($_SESSION['apriori_parfum_level']==1)?"admin":"kepala";
-        $_SESSION['apriori_parfum_level_name'] = $level_name;
-        $_SESSION['apriori_parfum_key'] = sha1(date("Y-m-d H:i:s") . $rows['id']);
-        $_SESSION['apriori_parfum_last_login'] = date("d-m-Y H:i:s");
+        $level_name = ($_SESSION['apriori_tncs_level']==1)?"admin":"kepala";
+        $_SESSION['apriori_tncs_level_name'] = $level_name;
+        $_SESSION['apriori_tncs_key'] = sha1(date("Y-m-d H:i:s") . $rows['id']);
+        $_SESSION['apriori_tncs_last_login'] = date("d-m-Y H:i:s");
         header("location:index.php");
 } else {
      header("location:login.php?login=1");

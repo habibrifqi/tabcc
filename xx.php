@@ -10,7 +10,7 @@ if (isset($_GET['menu'])) {
 //    $menu = 'not_found';
 //}
 
-if (!isset($_SESSION['apriori_parfum_id']) &&
+if (!isset($_SESSION['apriori_tncs_id']) &&
         ( $menu != 'tentang' & $menu != 'not_found' & $menu != 'forbidden')) {
     header("location:login.php");
 }

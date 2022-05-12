@@ -1,2 +1,2 @@
-# apriori_toko_parfum
-Data mining asosiasi metode apriori toko parfum
+# apriori
+Data mining asosiasi metode apriori temani ngopi cafe

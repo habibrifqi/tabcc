@@ -2,9 +2,19 @@
 error_reporting(0);
 session_start();
 $menu = '';
+$titlepage = "Home";
 if (isset($_GET['menu'])) {
     $menu = $_GET['menu'];
 }
+
+if ($_GET['menu'] == 'proses_apriori') {
+  $titlepage = "Proses Apriori";
+}else if($_GET['menu'] == 'hasil'){
+  $titlepage = "Hasil Proses Apriori";
+}else {
+  $titlepage = "Home";
+}
+
 
 //if (!file_exists($menu . ".php")) {
 //    $menu = 'not_found';
@@ -22,7 +32,7 @@ include_once 'fungsi.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title><?= $titlepage ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

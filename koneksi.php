@@ -6,7 +6,7 @@ return array(
     'host' => "localhost",
     'username' => "root",
     'password' => "",
-    'dbname' => "apriori_toko_parfum",
+    'dbname' => "tncs_db",
     // 'port' => "", // sementara menggunakan port bawaan
 );
 

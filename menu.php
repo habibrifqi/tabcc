@@ -23,6 +23,12 @@ if (isset($_GET['menu'])) {
             </a>
           </li>
           <li class="nav-item active">
+            <a href="index.php?menu=menus" class="nav-link <?php echo ($menu_active == 'menus') ? "active" : ""; ?>">
+            <i class="fas fa-home"></i>
+              <p>Menu</p>
+            </a>
+          </li>
+          <li class="nav-item active">
             <a href="index.php?menu=data_transaksi" class="nav-link <?php echo ($menu_active == 'data_transaksi') ? "active" : ""; ?>">
             <i class="fas fa-table"></i>
               <p>Data Transaksi</p>

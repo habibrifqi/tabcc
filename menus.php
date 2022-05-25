@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (!isset($_SESSION['apriori_tncs_id'])) {
     header("location:index.php?menu=forbidden");
 }
@@ -25,6 +26,10 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
                                 data-target="#tambah-menu">
                                 Tambah Menu
                             </button>
+                            <button type="button" class="btn btn-primary anehbtn">
+                                Tambah Menu
+                            </button>
+                            <a href="#" data-id="7" class="btn btn-info btn-sm editbtn" id="editbtn">Edit</a>
                         </div>
                         <div class="card-body">
                             <table id="tablemenus" class="table">
@@ -64,6 +69,38 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
                     <div class="form-group">
                         <label for="tambah_harga">Harga</label>
                         <input type="text" class="form-control" id="tambah_harga" placeholder="Harga">
+                    </div>
+                    <div class="modal-footer justify-content-end">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="edit-menu">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">edit Modal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editMenuForm" action="javascript:void();" method="POST">
+                    <input type="hidden" id="id" name="id" value="">
+                    <input type="hidden" id="trid" name="trid" value="">
+                    <div class="form-group">
+                        <label for="_nama_menu">Nama Menu</label>
+                        <input type="text" class="form-control" id="_nama_menu" placeholder="Nama Menu" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="_harga">Harga</label>
+                        <input type="text" class="form-control" id="_harga" placeholder="Harga" value="">
                     </div>
                     <div class="modal-footer justify-content-end">
                         <button type="submit" class="btn btn-primary">Simpan</button>

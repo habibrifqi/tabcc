@@ -1,4 +1,6 @@
-<?php include('connection.php');
+<?php 
+session_start();
+include('connection.php');
 
 $output= array();
 $sql = "SELECT * FROM menus ";
@@ -47,7 +49,9 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['id'];
 	$sub_array[] = $row['nama_menu'];
 	$sub_array[] = $row['harga'];
-	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm editbtn" >Edit</a>  <a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm deleteBtn" >Delete</a>';
+	$sub_array[] = '<button  onclick=editForm(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-info btn-sm editbtn" id=`"editbtn"`>Edit</button> <a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm deleteBtn" >Delete</a>'
+	
+	;
 	$data[] = $sub_array;
 }
 

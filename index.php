@@ -180,7 +180,9 @@ include_once 'fungsi.php';
 
 
   <!-- jQuery UI 1.11.4 -->
-  <script src="template/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- <script src="template/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -296,16 +298,7 @@ include_once 'fungsi.php';
       });
     });
   </script>
-  <!-- <?php 
-    // if (condition) : ?>
-    //   <script>
-      
-      
-      
-    //   </script>
-    
-    // </? endif }
-  ?> -->
+
   <!-- menus -->
   <script type="text/javascript">
     $(document).ready(function () {
@@ -322,13 +315,11 @@ include_once 'fungsi.php';
           'url': 'menus/fetch_data.php',
           'type': 'post',
         },
-        columnDefs: [
-            {
-                searchable: false,
-                orderable: false,
-                targets: 0,
-            },
-        ],
+        columnDefs: [{
+          searchable: false,
+          orderable: false,
+          targets: 0,
+        }, ],
         // order: [[1, 'asc']],
         "aoColumnDefs": [{
             "bSortable": false,
@@ -353,46 +344,77 @@ include_once 'fungsi.php';
         });
       }).draw();
 
+
+      $("#editbtn").click(function () {
+        alert("Handler fo");
+
+      });
+
     });
+
+    function editForm(url) {
+      $('#edit-menu').modal('show');
+      var id = url;
+      $.ajax({
+        url: "menus/get_single_menu.php",
+        data: {
+          'id': id
+        },
+        type: "post",
+        success: function (data) {
+          console.log(data);
+          var json = JSON.parse(data);
+          $('#_nama_menu').val(json.nama_menu);
+          $('#_harga').val(json.harga);
+        }
+      });
+
+    }
   </script>
 
   <!-- tambah menu  -->
   <script type="text/javascript">
-     $(document).ready(function () {
-      $(document).on('submit', '#tambahMenusForm' ,function(event){
+    $(document).ready(function () {
+      $(document).on('submit', '#tambahMenusForm', function (event) {
         event.preventDefault();
         var nama_menu = $('#tambah_nama_menu').val();
         var harga = $('#tambah_harga').val();
         if (nama_menu != '' && harga != '') {
-        $.ajax({
-          url: "menus/tambah_menus.php",
-          type: "post",
-          data : {'nama_menu':nama_menu,'harga':harga},
-          success: function(data) {
-            dataambil = data;
-            let dataAmbilAs = dataambil.substr(1);
-            const obj = JSON.parse(dataAmbilAs);
+          $.ajax({
+            url: "menus/tambah_menus.php",
+            type: "post",
+            data: {
+              'nama_menu': nama_menu,
+              'harga': harga
+            },
+            success: function (data) {
+              dataambil = data;
+              let dataAmbilAs = dataambil.substr(1);
+              const obj = JSON.parse(dataAmbilAs);
 
-            
-            if (obj.status == 'true') {
-              mytable = $('#tablemenus').DataTable();
-              mytable.draw();
-              $('#tambah-menu').modal('hide');
-              $("#tambah_harga").val("");
-              $("#tambah_nama_menu").val("");
-            } else {
-              alert('failed');
+
+              if (obj.status == 'true') {
+                mytable = $('#tablemenus').DataTable();
+                mytable.draw();
+                $('#tambah-menu').modal('hide');
+                $("#tambah_harga").val("");
+                $("#tambah_nama_menu").val("");
+              } else {
+                alert('failed');
+              }
             }
-          }
-        });
-      } else {
-        alert('Fill all the required fields');
-      }
+          });
+        } else {
+          alert('Fill all the required fields');
+        }
       })
     });
-      
-    </script>
+  </script>
   <!-- tambah menu  end -->
+
+  <!-- show menu update -->
+
+  <!-- show menu update end -->
 
 </body>
 

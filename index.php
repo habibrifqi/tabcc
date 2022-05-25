@@ -65,6 +65,7 @@ include_once 'fungsi.php';
   <link rel="stylesheet" href="template/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="template/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="template/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"> -->
 
 
 </head>
@@ -218,9 +219,11 @@ include_once 'fungsi.php';
   <script src="template/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
   <script src="template/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
   <script src="template/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src=".template/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src=".template/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src=".template/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src="template/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="template/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="template/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+  <!-- <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script> -->
   <!-- T daterange JS -->
   <script src="template/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 
@@ -293,35 +296,103 @@ include_once 'fungsi.php';
       });
     });
   </script>
-
+  <!-- <?php 
+    // if (condition) : ?>
+    //   <script>
+      
+      
+      
+    //   </script>
+    
+    // </? endif }
+  ?> -->
   <!-- menus -->
   <script type="text/javascript">
-    var t = $('#tablemenus').DataTable({
-      serverSide: true,
-      processing: true,
-      paging: false,
-      order: [],
-      ajax: {
-        url: 'menus/fetch_data.php',
-        type: 'POST',
-      },
-      fnCreateRow: function (nRow, aData, iDataIndex) {
-        $(nRow).attr('id', aData[0]);
-      },
-      columnDefs: [{
-        'target': [0, 5],
-        'orderable': false,
-      }]
-    });
+    $(document).ready(function () {
+      let t = $('#tablemenus').DataTable({
+        "fnCreatedRow": function (nRow, aData, iDataIndex) {
+          $(nRow).attr('id', aData[0]);
+        },
+        'serverSide': 'true',
+        'processing': 'true',
+        'paging': 'true',
+        'order': [],
+        // order: [[1, 'asc']],
+        'ajax': {
+          'url': 'menus/fetch_data.php',
+          'type': 'post',
+        },
+        columnDefs: [
+            {
+                searchable: false,
+                orderable: false,
+                targets: 0,
+            },
+        ],
+        // order: [[1, 'asc']],
+        "aoColumnDefs": [{
+            "bSortable": false,
+            "aTargets": [4]
+          },
 
-    t.on('order.dt search.dt', function () {
+        ]
+        // columnDefs: [{
+        //   // 'target': [0, 5],
+        //   // 'ordertable': true,
+        // }]
+      });
+
+      t.on('order.dt search.dt', function () {
         let i = 1;
- 
-        t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-            this.data(i++);
+
+        t.cells(null, 0, {
+          search: 'applied',
+          order: 'applied'
+        }).every(function (cell) {
+          this.data(i++);
         });
-    }).draw();
+      }).draw();
+
+    });
   </script>
+
+  <!-- tambah menu  -->
+  <script type="text/javascript">
+     $(document).ready(function () {
+      $(document).on('submit', '#tambahMenusForm' ,function(event){
+        event.preventDefault();
+        var nama_menu = $('#tambah_nama_menu').val();
+        var harga = $('#tambah_harga').val();
+        if (nama_menu != '' && harga != '') {
+        $.ajax({
+          url: "menus/tambah_menus.php",
+          type: "post",
+          data : {'nama_menu':nama_menu,'harga':harga},
+          success: function(data) {
+            dataambil = data;
+            let dataAmbilAs = dataambil.substr(1);
+            const obj = JSON.parse(dataAmbilAs);
+
+            
+            if (obj.status == 'true') {
+              mytable = $('#tablemenus').DataTable();
+              mytable.draw();
+              $('#tambah-menu').modal('hide');
+              $("#tambah_harga").val("");
+              $("#tambah_nama_menu").val("");
+            } else {
+              alert('failed');
+            }
+          }
+        });
+      } else {
+        alert('Fill all the required fields');
+      }
+      })
+    });
+      
+    </script>
+  <!-- tambah menu  end -->
 
 </body>
 

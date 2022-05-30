@@ -93,7 +93,7 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
             <div class="modal-body">
                 <form id="editMenuForm" action="javascript:void();" method="POST">
                     <input type="hidden" id="id" name="id" value="">
-                    <input type="hidden" id="trid" name="trid" value="">
+                    <input type="text" id="trid" name="trid" value="">
                     <div class="form-group">
                         <label for="_nama_menu">Nama Menu</label>
                         <input type="text" class="form-control" id="_nama_menu" placeholder="Nama Menu" autofocus>

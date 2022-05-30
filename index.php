@@ -355,6 +355,10 @@ include_once 'fungsi.php';
     function editForm(url) {
       $('#edit-menu').modal('show');
       var id = url;
+      $(document).ready(function(){
+      var trid = $('#trid').closet('tr').attr('id');
+      })
+      
       $.ajax({
         url: "menus/get_single_menu.php",
         data: {
@@ -366,6 +370,8 @@ include_once 'fungsi.php';
           var json = JSON.parse(data);
           $('#_nama_menu').val(json.nama_menu);
           $('#_harga').val(json.harga);
+          $('#id').val(json.id);
+          $('#trid').val(trid);
         }
       });
 
@@ -411,10 +417,75 @@ include_once 'fungsi.php';
     });
   </script>
   <!-- tambah menu  end -->
-
   <!-- show menu update -->
 
   <!-- show menu update end -->
+
+  <!-- save edit -->
+  <script>
+    $(document).on('submit','#editMenuForm',function(event){
+      var id = $('#id').val();
+      var trid = $('#trid').val();
+      var nama_menu = $('#_nama_menu').val();
+      var harga = $('#_harga').val();
+      $.ajax({
+        url : "menus/update_menu.php",
+        data: {
+              'id': id,
+              'nama_menu': nama_menu,
+              'harga': harga
+            },
+        type: 'post',
+        success:function(data)
+        {
+            var json = JSON.parse(data);
+            status = json.status;
+            console.log(status);
+            if(status=='true')
+            {
+              var t = $('#tablemenus').DataTable();
+                t.draw();
+                $('#edit-menu').modal('hide');
+              // var button = '<button  onclick=editForm(`'+id+'`); data-id="'+id+'" class="btn btn-info btn-sm editbtn" id=`"editbtn"`>Edit</button> <button  onclick=deletemenus(`'+id+'`); data-id="'+id+'" class="btn btn-danger btn-sm deletebtnMenu" id=`"deletebtnMenu"`>delete</button> '
+              // var row = table.row("[id='" + trid + "']");
+              // row.row("[id='" + trid + "']").data([id, nama_menu, harga, button]);
+            }
+            else{
+              $('#edit-menu').modal('hide');
+              alert('data sudah terpakai');
+            }
+        }
+      })
+    })
+  </script>
+  <!-- save edit end -->
+
+  <!-- delete menu -->
+  <script>
+     function deletemenu(id) {
+      var id = id;
+      $.ajax({
+        url: 'menus/delete_menu.php',
+        data: {
+              'id': id
+            },
+        type:'POST',
+        success:function(data)
+        {
+          var json = JSON.parse(data);
+          var status = json.status;
+          if(status=='success')
+          {
+            $('#' + id).closest('tr').remove();
+          }
+          else{
+            alert('gagal menghapus');
+          }
+        }
+      })
+     }
+  </script>
+  <!-- delete menu end -->
 
 </body>
 

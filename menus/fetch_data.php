@@ -49,7 +49,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['id'];
 	$sub_array[] = $row['nama_menu'];
 	$sub_array[] = $row['harga'];
-	$sub_array[] = '<button  onclick=editForm(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-info btn-sm editbtn" id=`"editbtn"`>Edit</button> <a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm deleteBtn" >Delete</a>'
+	$sub_array[] = '<button  onclick=editForm(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-info btn-sm editbtn" id=`"editbtn"`>Edit</button> <button  onclick=deletemenu(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-danger btn-sm deletebtnMenu" id=`"deletebtnMenu"`>delete</button>'
 	
 	;
 	$data[] = $sub_array;

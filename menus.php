@@ -26,10 +26,6 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
                                 data-target="#tambah-menu">
                                 Tambah Menu
                             </button>
-                            <button type="button" class="btn btn-primary anehbtn">
-                                Tambah Menu
-                            </button>
-                            <a href="#" data-id="7" class="btn btn-info btn-sm editbtn" id="editbtn">Edit</a>
                         </div>
                         <div class="card-body">
                             <table id="tablemenus" class="table">

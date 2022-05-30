@@ -1,3 +1,4 @@
+// get datatable menu
 $(document).ready(function () {
     let t = $('#tablemenus').DataTable({
         "fnCreatedRow": function (nRow, aData, iDataIndex) {
@@ -49,9 +50,11 @@ $(document).ready(function () {
 
 });
 
+// get datatable menu end
 
 
 
+// show single menu
 function editForm(url) {
     $('#edit-menu').modal('show');
     var id = url;
@@ -76,7 +79,9 @@ function editForm(url) {
     });
 
 }
+// show single menu end
 
+// tambah menu
 $(document).ready(function () {
     $(document).on('submit', '#tambahMenusForm', function (event) {
         event.preventDefault();
@@ -112,8 +117,9 @@ $(document).ready(function () {
         }
     })
 });
+// tambah menu
 
-
+// edit/update menu
 $(document).on('submit', '#editMenuForm', function (event) {
     var id = $('#id').val();
     var trid = $('#trid').val();
@@ -145,24 +151,28 @@ $(document).on('submit', '#editMenuForm', function (event) {
         }
     })
 })
+// edit/update end
 
-
+// delete menu
 function deletemenu(id) {
     var id = id;
-    $.ajax({
-        url: 'menus/delete_menu.php',
-        data: {
-            'id': id
-        },
-        type: 'POST',
-        success: function (data) {
-            var json = JSON.parse(data);
-            var status = json.status;
-            if (status == 'success') {
-                $('#' + id).closest('tr').remove();
-            } else {
-                alert('gagal menghapus');
+    if (confirm("hapus?") == true) {
+        $.ajax({
+            url: 'menus/delete_menu.php',
+            data: {
+                'id': id
+            },
+            type: 'POST',
+            success: function (data) {
+                var json = JSON.parse(data);
+                var status = json.status;
+                if (status == 'success') {
+                    $('#' + id).closest('tr').remove();
+                } else {
+                    alert('gagal menghapus');
+                }
             }
-        }
-    })
+        })
+    }
 }
+// delete menu end

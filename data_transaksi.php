@@ -6,6 +6,7 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
 
 include_once "database.php";
 include_once "fungsi.php";
+include_once "_transaksi/_get_menu.php";
 include_once "import/excel_reader2.php";
 ?>
 <div class="main-content">
@@ -16,7 +17,7 @@ include_once "import/excel_reader2.php";
                     Data Transaksi
                 </h1>
             </div><!-- /.page-header -->
-<?php
+            <?php
 //object database class
 $db_object = new database();
 
@@ -92,16 +93,20 @@ if(isset($_POST['submit'])){
             // $temp_date = $value[1];
         }
         ?>
-        <script> location.replace("?menu=data_transaksi&pesan_success=Data berhasil disimpan"); </script>
-        <?php
+            <script>
+                location.replace("?menu=data_transaksi&pesan_success=Data berhasil disimpan");
+            </script>
+            <?php
 }
 
 if(isset($_POST['delete'])){
     $sql = "TRUNCATE transaksi";
     $db_object->db_query($sql);
     ?>
-        <script> location.replace("?menu=data_transaksi&pesan_success=Data transaksi berhasil dihapus"); </script>
-        <?php
+            <script>
+                location.replace("?menu=data_transaksi&pesan_success=Data transaksi berhasil dihapus");
+            </script>
+            <?php
 }
 
 $sql = "SELECT
@@ -110,38 +115,96 @@ $sql = "SELECT
          transaksi";
 $query=$db_object->db_query($sql);
 $jumlah=$db_object->db_num_rows($query);
-?>            
-<div class="row">
-    <div class="col-sm-4">
-        <div class="widget-box">
-        <!--UPLOAD EXCEL FORM-->
-        <form method="post" enctype="multipart/form-data" action="">
-            <div class="widget-body">
-                <div class="widget-main">
-                    <div class="form-group">
-                        <input type="file" id="id-input-file-2" name="file_data_transaksi"/>
 
-                        <button name="submit" type="submit" value="" class="btn btn-app btn-purple btn-sm">
-                            <i class="ace-icon fa fa-cloud-upload bigger-200"></i> Upload
-                        </button>
-                        <button name="delete" type="submit"  class="btn btn-app btn-danger btn-sm" 
-                                onclick="return confirm('Are you sure?')" >
-                            <i class="ace-icon fa fa-trash-o bigger-200"></i> Delete
-                        </button>
+// get post dari _transaksi
+$getmenu = $_POST['_get_menu'];
+// $keys = array_keys($getmenu);
+// rsort($keys);
+$mm = [
+    [
+        "nama" => 123,
+        "tai" => 23
+    ],
+    [
+        "nama" => 1,
+        "tai" => 2
+    ]
+]
+?>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="widget-box">
+                        <!--UPLOAD EXCEL FORM-->
+                        <form method="post" enctype="multipart/form-data" action="">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <div class="form-group">
+                                        <input type="file" id="id-input-file-2" name="file_data_transaksi" />
+
+                                        <button name="submit" type="submit" value=""
+                                            class="btn btn-app btn-purple btn-sm">
+                                            <i class="ace-icon fa fa-cloud-upload bigger-200"></i> Upload
+                                        </button>
+                                        <button name="delete" type="submit" class="btn btn-app btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure?')">
+                                            <i class="ace-icon fa fa-trash-o bigger-200"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
-        </div>
-    </div>
-</div>
+
+            <div class="main-content">
+                <div class="main-content-inner">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <!-- <h3 class="card-title">data menus</h3> -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#tambah-transaksi">
+                                            Tambah Transaksi
+                                        </button>
+                                        <?php 
+                                            echo '<pre>'; print_r($getmenu); 
+                                            echo '<pre>'; print_r($mm); 
+                                            // die;
+                                           
+                                                // echo "Key=" . $mm[1]['tai'];
+
+                                                foreach ($getmenu as $key) {
+                                                    echo "Key=" . $key[0];
+                                                    echo "Key=" . $key[1];
+                                                    echo "Key=" . $key[2];
+                                                    
+                                                }
+                                            
+
+                                        ?>
+                                    </div>
+                                    <div class="card-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
             <div class="row">
                 <div class="col-sm-12">
-                <div class="widget-box">
-                    <div class="widget-body">
-                    <div class="widget-main">
-            <?php
+                    <div class="widget-box">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <?php
             if (!empty($pesan_error)) {
                 display_error($pesan_error);
             }
@@ -155,13 +218,13 @@ $jumlah=$db_object->db_num_rows($query);
             }
             else{
             ?>
-            <table class='table table-bordered table-striped  table-hover'>
-                <tr>
-                <th>No</th>
-                <th>Tanggal</th>
-                <th>Produk</th>
-                </tr>
-                <?php
+                                <table class='table table-bordered table-striped  table-hover'>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Produk</th>
+                                    </tr>
+                                    <?php
                     $no=1;
                     while($row=$db_object->db_fetch_array($query)){
                         echo "<tr>";
@@ -172,15 +235,15 @@ $jumlah=$db_object->db_num_rows($query);
                         $no++;
                     }
                     ?>
-            </table>
-            <?php
+                                </table>
+                                <?php
             }
             ?>
-            </div>
-            </div>
+                            </div>
+                        </div>
                     </div>
-            </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
@@ -202,4 +265,56 @@ function get_produk_to_in($produk){
 }
 
 ?>
-  
+
+
+<div class="modal fade" id="tambah-transaksi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">tambah Transaksi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="tambahMenusForm" action="javascript:void();" method="POST">
+                    <!-- <h1>asdasd</h1> -->
+                    <div class="form-group">
+                        <label>Multiple</label>
+                        <select class="select2" multiple="multiple" data-placeholder="Select a State"
+                            style="width: 100%;" value="ss">
+                            <option>Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>tai aldasd</option>
+                            <option>Teasdas asda xas</option>
+                            <option>Texadfg fdg s</option>
+                            <option>Texdfg43 as</option>
+                            <option>444 fg</option>
+                            <option>dfg fdg</option>
+                            <option>45 sf</option>
+                            <option>Te56765 xas</option>
+                            <option>nmghj </option>
+                            <option>nmmn </option>
+                            <!-- <option><?//= $getmenu[0][1] ?></option> -->
+                            <?php 
+                             foreach ($getmenu as $key) { ?>
+                                <option><?= $key[1] ?></option>
+                                <?php   
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer justify-content-end">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

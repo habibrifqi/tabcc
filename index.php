@@ -67,6 +67,10 @@ include_once 'fungsi.php';
   <link rel="stylesheet" href="template/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"> -->
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="template/AdminLTE/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="template/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
 
 </head>
 
@@ -229,6 +233,9 @@ include_once 'fungsi.php';
   <!-- T daterange JS -->
   <script src="template/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 
+  <!-- Select2 -->
+<script src="template/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
+
 
 
   <script type="text/javascript">
@@ -302,6 +309,28 @@ include_once 'fungsi.php';
     if ( $_GET['menu'] == 'menus') : ?>
     <script src="menus/menus.js"></script>
     <?php endif ?>
+
+    <script>
+      
+  $(function () {
+     // Select the option with a value of 'US'
+    var s2 = $('.select2').select2({
+      theme: 'bootstrap4'
+    })
+  })
+      //Initialize Select2 Elements
+      $(".select2").on("select2:select select2:unselect", function (e) {
+
+//this returns all the selected item
+      var items= $(this).val();     
+      let textt = items.toString();  
+
+      //Gets the last selected item
+      var lastSelectedItem = e.params.data.id;
+        console.log(textt);
+      })
+    
+    </script>
 
 </body>
 

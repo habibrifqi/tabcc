@@ -6,7 +6,7 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
 
 // require_once('fetch_data.php');
 // include_once 'menus/fetch_data.php';
-// var_dump($sql);
+
 ?>
 <div class="main-content">
     <div class="main-content-inner">
@@ -26,11 +26,14 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
                                 data-target="#tambah-menu">
                                 Tambah Menu
                             </button>
+                            <?php
+                            echo sprintf("M"."%0". 5 . "s",10)
+                            ?>
                         </div>
                         <div class="card-body">
                             <table id="tablemenus" class="table">
                                 <thead>
-                                    <th>no</th>
+                                    <th>ID</th>
                                     <th>nama_menu</th>
                                     <th>harga</th>
                                     <th>Options</th>

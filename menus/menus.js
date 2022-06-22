@@ -34,7 +34,7 @@ $(document).ready(function () {
     t.on('order.dt search.dt', function () {
         let i = 1;
 
-        t.cells(null, 0, {
+        t.cells(0, {
             search: 'applied',
             order: 'applied'
         }).every(function (cell) {
@@ -164,10 +164,16 @@ function deletemenu(id) {
             },
             type: 'POST',
             success: function (data) {
+
                 var json = JSON.parse(data);
                 var status = json.status;
                 if (status == 'success') {
-                    $('#' + id).closest('tr').remove();
+                    // menambah 0000 di id utnukbisa dihapus
+                    var noid = id.toString();
+                    var dd = noid.padStart(5, '0');
+                    var ddd = "M";
+                    ddd += dd;
+                    $('#' + ddd).closest('tr').remove();
                 } else {
                     alert('gagal menghapus');
                 }

@@ -42,16 +42,21 @@ if($_POST['length'] != -1)
 $query = mysqli_query($con,$sql);
 $count_rows = mysqli_num_rows($query);
 $data = array();
-$no = 1;
+
+ 
+function tambah_nol_didepan($value, $threshold = null)
+{
+	return sprintf("M"."%0". $threshold . "s",$value);
+}
+
 while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
-	$sub_array[] = $row['id'];
+	// $sub_array[] = sprintf("M"."%0". 5 . "s",$row['id']);
+	$sub_array[] = tambah_nol_didepan($row['id'],5);
 	$sub_array[] = $row['nama_menu'];
 	$sub_array[] = $row['harga'];
-	$sub_array[] = '<button  onclick=editForm(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-info btn-sm editbtn" id=`"editbtn"`>Edit</button> <button  onclick=deletemenu(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-danger btn-sm deletebtnMenu" id=`"deletebtnMenu"`>delete</button>'
-	
-	;
+	$sub_array[] = '<button  onclick=editForm(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-info btn-sm editbtn" id=`"editbtn"`>Edit</button> <button  onclick=deletemenu(`'.$row["id"].'`); data-id="'.$row["id"].'" class="btn btn-danger btn-sm deletebtnMenu" id=`"deletebtnMenu"`>delete</button>';
 	$data[] = $sub_array;
 }
 

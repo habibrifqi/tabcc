@@ -310,27 +310,13 @@ include_once 'fungsi.php';
     <script src="menus/menus.js"></script>
     <?php endif ?>
 
-    <script>
-      
-  $(function () {
-     // Select the option with a value of 'US'
-    var s2 = $('.select2').select2({
-      theme: 'bootstrap4'
-    })
-  })
-      //Initialize Select2 Elements
-      $(".select2").on("select2:select select2:unselect", function (e) {
+    <?php
+    if ( $_GET['menu'] == 'data_transaksi') : ?>
+    <script src="_transaksi/_transaksi.js"></script>
+    <?php endif ?>
 
-//this returns all the selected item
-      var items= $(this).val();     
-      let textt = items.toString();  
 
-      //Gets the last selected item
-      var lastSelectedItem = e.params.data.id;
-        console.log(textt);
-      })
-    
-    </script>
+  
 
 </body>
 

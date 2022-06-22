@@ -120,16 +120,16 @@ $jumlah=$db_object->db_num_rows($query);
 $getmenu = $_POST['_get_menu'];
 // $keys = array_keys($getmenu);
 // rsort($keys);
-$mm = [
-    [
-        "nama" => 123,
-        "tai" => 23
-    ],
-    [
-        "nama" => 1,
-        "tai" => 2
-    ]
-]
+// $mm = [
+//     [
+//         "nama" => 123,
+//         "tai" => 23
+//     ],
+//     [
+//         "nama" => 1,
+//         "tai" => 2
+//     ]
+// ]
 ?>
             <div class="row">
                 <div class="col-sm-4">
@@ -169,22 +169,6 @@ $mm = [
                                             data-target="#tambah-transaksi">
                                             Tambah Transaksi
                                         </button>
-                                        <?php 
-                                            echo '<pre>'; print_r($getmenu); 
-                                            echo '<pre>'; print_r($mm); 
-                                            // die;
-                                           
-                                                // echo "Key=" . $mm[1]['tai'];
-
-                                                foreach ($getmenu as $key) {
-                                                    echo "Key=" . $key[0];
-                                                    echo "Key=" . $key[1];
-                                                    echo "Key=" . $key[2];
-                                                    
-                                                }
-                                            
-
-                                        ?>
                                     </div>
                                     <div class="card-body">
 
@@ -277,39 +261,37 @@ function get_produk_to_in($produk){
                 </button>
             </div>
             <div class="modal-body">
-                <form id="tambahMenusForm" action="javascript:void();" method="POST">
+                <form id="tambahtransaksiForm" action="javascript:void();" method="POST">
                     <!-- <h1>asdasd</h1> -->
+                    <div class="form-group">
+                            <label>Date:</label>
+                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" 
+                                    data-target="#reservationdate" />
+                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
                     <div class="form-group">
                         <label>Multiple</label>
                         <select class="select2" multiple="multiple" data-placeholder="Select a State"
                             style="width: 100%;" value="ss">
-                            <option>Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>tai aldasd</option>
-                            <option>Teasdas asda xas</option>
-                            <option>Texadfg fdg s</option>
-                            <option>Texdfg43 as</option>
-                            <option>444 fg</option>
-                            <option>dfg fdg</option>
-                            <option>45 sf</option>
-                            <option>Te56765 xas</option>
-                            <option>nmghj </option>
-                            <option>nmmn </option>
+                            <!-- <option selected disabled>all</option> -->
+                            <option>dd</option>
                             <!-- <option><?//= $getmenu[0][1] ?></option> -->
                             <?php 
                              foreach ($getmenu as $key) { ?>
-                                <option><?= $key[1] ?></option>
-                                <?php   
+                            <option><?= $key[1] ?></option>
+                            <?php   
                             }
                             ?>
                         </select>
                     </div>
+                    <!-- <button type="submit" class="btn btt">tt</button> -->
                     <div class="modal-footer justify-content-end">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="reset"  class="btn btn-primary" id="clear">clear</button>
+                        <button type="submit" class="btn btn-primary btn_transaksi">Simpan</button>
                     </div>
                 </form>
             </div>

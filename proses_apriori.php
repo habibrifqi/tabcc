@@ -145,7 +145,9 @@ if (isset($_POST['submit'])) {
         WHERE transaction_date BETWEEN '$start' AND '$end' ";
         $res = $db_object->db_query($sql);
         $num = $db_object->db_fetch_array($res);
-        $minSupportRelatif = ($_POST['min_support']/$num[0]) * 100;
+        // $minSupportRelatif = ($_POST['min_support']/$num[0]) * 100;
+        $minSupportRelatif = $_POST['min_support'];
+        // echo "Min Support Relatif: " . $minSupportRelatif;
         echo "Min Support Relatif: " . $minSupportRelatif;
         echo "<br>";
         echo "Min Confidence: " . $_POST['min_confidence'];

@@ -7,7 +7,7 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
 include_once "database.php";
 include_once "fungsi.php";
 include_once "_transaksi/_get_menu.php";
-include_once "import/excel_reader2.php";
+// include_once "import/excel_reader2.php";s
 ?>
 <div class="main-content">
     <div class="main-content-inner">
@@ -169,6 +169,11 @@ $getmenu = $_POST['_get_menu'];
                                             data-target="#tambah-transaksi">
                                             Tambah Transaksi
                                         </button>
+
+                                        <button type="button" class="btn btn-info ml-2" data-toggle="modal"
+                                            data-target="#import-transaksi">
+                                            Import Data
+                                        </button>
                                     </div>
                                     <div class="card-body">
 
@@ -250,7 +255,7 @@ function get_produk_to_in($produk){
 
 ?>
 
-
+<!-- Tambah transaksi Modal -->
 <div class="modal fade" id="tambah-transaksi">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -300,3 +305,34 @@ function get_produk_to_in($produk){
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<!-- Import Data transaksi Modal -->
+<div class="modal fade" id="import-transaksi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Import Transaksi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="_transaksi/import_transaksi.php" method="POST" enctype='multipart/form-data'>
+                    <!-- <h1>asdasd</h1> -->
+                    <div class="form-group">
+                        <label>Import</label>
+                           <input type="file" name="data" id="data">
+                        </div>
+                   
+                    <div class="modal-footer justify-content-end">
+                        <!-- <button type="reset"  class="btn btn-primary" id="clear">clear</button> -->
+                        <button type="submit" name="submit" class="btn btn-primary btn_transaksi">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+

@@ -127,10 +127,10 @@ else{
     $query1=$db_object->db_query($sql1);
     $jumlah1=$db_object->db_num_rows($query1);
 
-    $sql_log = "SELECT * FROM process_log
-    WHERE id = ".$id_process;
-    $res_log = $db_object->db_query($sql_log);
-    $row_log = $db_object->db_fetch_array($res_log);
+    // $sql_log = "SELECT * FROM process_log
+    // WHERE id = ".$id_process;
+    // $res_log = $db_object->db_query($sql_log);
+    // $row_log = $db_object->db_fetch_array($res_log);
     
 //            if($jumlah==0){
 //                    echo "Data kosong...";
@@ -238,16 +238,7 @@ else{
                     }
                     ?>
             </table>
-            <h2>Hasil Analisa</h2>
-            <!-- <a href="export/CLP.php?id_process=<?php echo $id_process; ?>" class="btn btn-app btn-light btn-xs" target="blank">
-                <i class="ace-icon fa fa-print bigger-160"></i>
-                Print
-            </a> -->
-            <a href="index.php?menu=view_rule_print&id_process=<?php echo $id_process; ?>"  target="_BLANK" class="btn btn-app btn-light btn-xs" target="blank">
-                <i class="ace-icon fa fa-print bigger-160"></i>
-                Print
-            </a>
-          
+            
             <br>
             <table class='table table-bordered table-striped  table-hover'>
                 <?php
@@ -489,3 +480,29 @@ else{
         </div>
     </div>
 </div>
+
+
+<?php
+//SIMPAN DIBARIS PALING BAWAH UNTUK KONVERSI PDF
+
+    // $content = ob_get_clean();
+    // require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
+    // try
+    // {
+    //    $html2pdf = new HTML2PDF('P', 'A4', 'en',  array(8, 8, 8, 8));
+    //    $html2pdf->pdf->SetDisplayMode('fullpage');
+    //    $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
+    //    $html2pdf->Output('laporan.pdf');
+    // }
+    // catch(HTML2PDF_exception $e) {
+    //     echo $e;
+    //     exit;
+    // }
+
+?>
+<script>
+setTimeout(window.print(), 5000);
+    
+    
+		
+</script>

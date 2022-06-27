@@ -12,6 +12,8 @@ if ($_GET['menu'] == 'proses_apriori') {
   $titlepage = "Proses Apriori";
 }else if($_GET['menu'] == 'hasil'){
   $titlepage = "Hasil Proses Apriori";
+}else if($_GET['menu'] == 'hasil' ||$_GET['id_process']){
+  $titlepage = "Detail Hasil";
 }else {
   $titlepage = "Home";
 }
@@ -77,10 +79,11 @@ include_once 'fungsi.php';
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
+  <!-- Animasi Loading Page -->
     <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-    </div>
+    <!-- <div class="preloader flex-column justify-content-center align-items-center"> -->
+      <!-- <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60"> -->
+    <!-- </div> -->
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">

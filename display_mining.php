@@ -202,6 +202,31 @@ function display_process_hasil_mining($db_object, $id_process) {
         ?>
     </table>
 
+    <table class='table table-bordered table-striped  table-hover'>
+        <tr>
+            <th>No</th>
+            <th>hasil</th>
+            <!-- <th></th> -->
+        </tr>
+        <?php
+        
+        $no = 1;
+        //while ($row1 = $db_object->db_fetch_array($query1)) {
+        foreach($data_confidence as $key => $val){
+//            $kom1 = explode(" , ", $row1['kombinasi1']);
+//            $jika = implode(" Dan ", $kom1);
+//            $kom2 = explode(" , ", $row1['kombinasi2']);
+//            $maka = implode(" Dan ", $kom2);
+            echo "<tr>";
+            echo "<td>" . $no . "</td>";
+            echo "<td>jika konsumen membeli" . $val['kombinasi1']." maka konsumen juga akan membeli ".$val['kombinasi2'] . "</td>";
+        
+            echo "</tr>";
+            $no++;
+        }
+        ?>
+    </table>
+
     <?php
 }
 ?>

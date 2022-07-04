@@ -164,10 +164,10 @@ include_once 'fungsi.php';
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+      <strong>Copyright &copy; 2022 <a href="">Habib Rifqi</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
+        <b>Version</b> 1
       </div>
     </footer>
 
@@ -317,6 +317,47 @@ include_once 'fungsi.php';
     if ( $_GET['menu'] == 'data_transaksi') : ?>
     <script src="_transaksi/_transaksi.js"></script>
     <?php endif ?>
+
+    <script>
+      // $("#custom-tabs-one-home").hide();
+      $(document).ready(function () {
+        $("#custom-tabs-one-itemset1").show();
+        $("#custom-tabs-one-itemset2").hide();
+        $("#custom-tabs-one-itemset3").hide();
+        $("#custom-tabs-one-confident").hide();
+      });
+      $("#custom-tabs-one-itemset1-tab").click(function(){
+      $("#custom-tabs-one-itemset1").show();
+      $("#custom-tabs-one-itemset2").hide();
+      $("#custom-tabs-one-itemset3").hide();
+      $("#custom-tabs-one-confident").hide();
+      console.log('sds');
+      });
+
+      $("#custom-tabs-one-itemset2-tab").click(function(){
+      $("#custom-tabs-one-itemset2").show();
+      $("#custom-tabs-one-itemset1").hide();
+      $("#custom-tabs-one-itemset3").hide();
+      $("#custom-tabs-one-confident").hide();
+      console.log('sds');
+      });
+
+      $("#custom-tabs-one-itemset3-tab").click(function(){
+      $("#custom-tabs-one-itemset3").show();
+      $("#custom-tabs-one-itemset1").hide();
+      $("#custom-tabs-one-itemset2").hide();
+      $("#custom-tabs-one-confident").hide();
+      console.log('sds');
+      });
+
+      $("#custom-tabs-one-confident-tab").click(function(){
+      $("#custom-tabs-one-confident").show();
+      $("#custom-tabs-one-itemset1").hide();
+      $("#custom-tabs-one-itemset2").hide();
+      $("#custom-tabs-one-itemset3").hide();
+      console.log('sds');
+      });
+    </script>
 
 
   

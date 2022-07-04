@@ -1,3 +1,15 @@
+<!-- <div class='tab-pane fade show active' id='custom-tabs-one-home' role='tabpanel'
+                                    aria-labelledby='custom-tabs-one-home-tab'>
+                                    <table class="table">
+                                        <tr>
+                                            <th>asdasd</th>
+                                            <th>asdasd</th>
+                                            <th>asdasd</th>
+                                            <th>asdasd</th>
+                                        </tr>
+                                    </table>
+</div> -->
+
 <?php
 
 /* 
@@ -102,6 +114,7 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
         $dataTransaksi[$x]['produk'] = $item_produk;
         $produk = explode(",", $myrow['produk']);
         //all items
+        
         foreach ($produk as $key => $value_produk) {
             //if(!in_array($value_produk, $item_list)){
             if(!in_array(strtoupper($value_produk), array_map('strtoupper', $item_list))){
@@ -112,11 +125,17 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
         }
         $x++;
     }
+    ?>
     
+    <!-- <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel"
+    aria-labelledby="custom-tabs-one-profile-tab"> -->
     
-    //build itemset 1
+    <!-- build itemset 1 -->
+    <div class='tab-pane fade show active' id='custom-tabs-one-itemset1' role='tabpanel' aria-labelledby='custom-tabs-one-itemset1-tab'>
+
+    <?php
     echo "<br><strong>Itemset 1:</strong><br>";
-    echo "<table class='table table-bordered table-striped  table-hover'>
+    echo "<table class='table table-bordered table-striped  table-hover table1'>
             <tr>
                 <th>No</th>
                 <th>Item</th>
@@ -151,7 +170,6 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
     $sql_insert_itemset1 = "INSERT INTO itemset1 (atribut, jumlah, support, lolos, id_process) "
             . " VALUES ".$value_insert;
     $db_object->db_query($sql_insert_itemset1);
-    
     //display itemset yg lolos
     echo "<br><strong>Itemset 1 yang lolos:</strong><br>";
     echo "<table class='table table-bordered table-striped  table-hover'>
@@ -172,8 +190,13 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
         $x++;
     }
     echo "</table>";
+    echo "</div>";
+    ?>
+    <!-- </div> -->
+    <?php
     
-    
+    echo "<div class='tab-pane fade' id='custom-tabs-one-itemset2' role='tabpanel'
+    aria-labelledby='custom-tabs-one-itemset2-tab'>";
     //build itemset2
     echo "<br><strong>Itemset 2:</strong><br>";
     echo "<table class='table table-bordered table-striped  table-hover'>
@@ -258,8 +281,10 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
         $no++;
     }
     echo "</table>";
-    
+    echo "</div>";
     //build itemset3
+    echo "<div class='tab-pane fade' id='custom-tabs-one-itemset3' role='tabpanel'
+    aria-labelledby='custom-tabs-one-itemset3-tab'>";
     echo "<br><strong>Itemset 3:</strong><br>";
     echo "<table class='table table-bordered table-striped  table-hover'>
             <tr>
@@ -376,8 +401,9 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
         $no++;
     }
     echo "</table>";
-    
-
+    echo "</div>";
+        
+    // echo "<pre>";print_r($supp_xuy);die; 
     //hitung confidence
     $confidence_from_itemset = 0;
     //dari itemset 3 jika tidak ada yg lolos ambil dari itemset 2 jika tiak ada gagal mendapatkan confidence
@@ -396,7 +422,6 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
             //1,2 => 3
             hitung_confidence($db_object, $supp_xuy, $min_support, $min_confidence, 
                     $atribut1, $atribut2, $atribut3, $id_process, $dataTransaksi, $jumlah_transaksi);
-            
             //2,3 => 1
             hitung_confidence($db_object, $supp_xuy, $min_support, $min_confidence, 
                     $atribut2, $atribut3, $atribut1, $id_process, $dataTransaksi, $jumlah_transaksi);

@@ -85,6 +85,8 @@ if (isset($_POST['submit'])) {
         }
         //show form for update
         ?>
+        <div class="card">
+                <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
                     <form method="post" action="">
@@ -136,7 +138,40 @@ if (isset($_POST['submit'])) {
                     </form>
                 </div>
             </div>
-            <?php
+                </div>
+        </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary card-tabs">
+                        <div class="card-header p-0 pt-1">
+                            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="custom-tabs-one-itemset1-tab" data-toggle="pill"
+                                        href="#custom-tabs-one-itemset1" role="tab" aria-controls="custom-tabs-one-itemset1"
+                                        aria-selected="true">itemset1</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-one-itemset2-tab" data-toggle="pill"
+                                        href="#custom-tabs-one-itemset2" role="tab"
+                                        aria-controls="custom-tabs-one-itemset2" aria-selected="false">itemset2</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-one-itemset3-tab" data-toggle="pill"
+                                        href="#custom-tabs-one-itemset3" role="tab"
+                                        aria-controls="custom-tabs-one-itemset3" aria-selected="false">itemset3</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-one-confident-tab" data-toggle="pill"
+                                        href="#custom-tabs-one-confident" role="tab"
+                                        aria-controls="custom-tabs-one-confident" aria-selected="false">confident</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            
+                        
+                  
+                <?php
 
 
         echo "Min Support Absolut: " . $_POST['min_support'];
@@ -157,13 +192,23 @@ if (isset($_POST['submit'])) {
 
         $result = mining_process($db_object, $_POST['min_support'], $_POST['min_confidence'],
                 $start, $end, $id_process);
+        echo "<div class='tab-pane fade' id='custom-tabs-one-confident' role='tabpanel'
+                aria-labelledby='custom-tabs-one-confident-tab'>";
         if ($result) {
+            
             display_success("Proses mining selesai");
+           
         } else {
             display_error("Gagal mendapatkan aturan asosiasi");
         }
 
         display_process_hasil_mining($db_object, $id_process);
+        echo "</div>";
+        // echo end untuk div Tabs
+        echo"  </div>
+        </div>
+        </div>
+    </div>";
     }
                
 } 
@@ -185,54 +230,62 @@ else {
     $query = $db_object->db_query($sql);
     $jumlah = $db_object->db_num_rows($query);
     ?>
-            <form method="post" action="">
-                <div class="row">
-                    <div class="col-lg-6 ">
-                        <!-- Date range -->
+
+                <div class="card">
+                <div class="card-body">
+                    
+                <form method="post" action="">
+                    <div class="row">
+                        
+                        <div class="col-lg-6 ">
+                            <!-- Date range -->
 
 
-                        <!-- /.form group -->
-                        <!-- Date range -->
-                        <div class="form-group">
-                            <label>Date range:</label>
+                            <!-- /.form group -->
+                            <!-- Date range -->
+                            <div class="form-group">
+                                <label>Date range:</label>
 
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="far fa-calendar-alt"></i>
-                                    </span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control float-right" name="range_tanggal"
+                                        id="reservation" required="" placeholder="Date range"
+                                        value="<?php echo $_POST['range_tanggal']; ?>">
                                 </div>
-                                <input type="text" class="form-control float-right" name="range_tanggal"
-                                    id="reservation" required="" placeholder="Date range"
-                                    value="<?php echo $_POST['range_tanggal']; ?>">
+                                <!-- /.input group -->
                             </div>
-                            <!-- /.input group -->
-                        </div>
-                        <!-- /.form group -->
+                            <!-- /.form group -->
 
 
-                        <div class="form-group">
-                            <input name="search_display" type="submit" value="Search" class="btn btn-default">
+                            <div class="form-group">
+                                <input name="search_display" type="submit" value="Search" class="btn btn-default">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 ">
-                        <div class="form-group">
-                            <label>Min Support: </label>
-                            <input name="min_support" type="text" class="form-control" placeholder="Min Support">
+                        <div class="col-lg-6 ">
+                            <div class="form-group">
+                                <label>Min Support: </label>
+                                <input name="min_support" type="text" class="form-control" placeholder="Min Support">
+                            </div>
+                            <div class="form-group">
+                                <label>Min Support: </label>
+                                <input name="min_confidence" type="text" class="form-control"
+                                    placeholder="Min Confidence">
+                            </div>
+                            <div class="form-group">
+                                <input name="submit" type="submit" value="Proses" class="btn btn-success">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Min Support: </label>
-                            <input name="min_confidence" type="text" class="form-control" placeholder="Min Confidence">
                         </div>
-                        <div class="form-group">
-                            <input name="submit" type="submit" value="Proses" class="btn btn-success">
-                        </div>
-                    </div>
+                    
+                </form>
+</div>
+</div>
 
-                </div>
-            </form>
-
-            <?php
+                <?php
     if (!empty($pesan_error)) {
         display_error($pesan_error);
     }
@@ -247,13 +300,13 @@ else {
     } 
     else {
         ?>
-            <table class='table table-bordered table-striped  table-hover'>
-                <tr>
-                    <th>No</th>
-                    <th>Tanggal</th>
-                    <th>Produk</th>
-                </tr>
-                <?php
+                <table class='table table-bordered table-striped  table-hover'>
+                    <tr>
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Produk</th>
+                    </tr>
+                    <?php
             $no = 1;
             while ($row = $db_object->db_fetch_array($query)) {
                 echo "<tr>";
@@ -264,13 +317,13 @@ else {
                 $no++;
             }
             ?>
-            </table>
-            <?php
+                </table>
+                <?php
     }           
 }
 ?>
 
 
+            </div>
         </div>
     </div>
-</div>

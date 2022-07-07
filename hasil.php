@@ -70,7 +70,7 @@ $jumlah=$db_object->db_num_rows($query);
                 <th>Min Support</th>
                 <th>Min Confidence</th>
                 <th></th>
-                <th style="width: 100px ;">Pdf</th>
+                <th style="width: 100px ;text-align:center;">Pdf</th>
                 </tr>
                 <?php
                     $no=1;
@@ -92,7 +92,7 @@ $jumlah=$db_object->db_num_rows($query);
                             echo "<td>".$row['min_confidence']."</td>";
                             $view = "<a href='index.php?menu=view_rule&id_process=".$row['id']."'>View rule</a>";
                             echo "<td>".$view."</td>";
-                            echo "<td>";
+                            echo "<td style='text-align:center'>";
                             // echo "<a href='export/CLP.php?id_process=".$row['id']."' "
                             //         . "class='btn btn-app btn-light btn-xs' target='blank'>
                             //         <i class='ace-icon fa fa-print bigger-160'></i>
@@ -100,13 +100,11 @@ $jumlah=$db_object->db_num_rows($query);
                             //     </a>";
                             echo "<a href='index.php?menu=view_rule_print&id_process=".$row['id']."' "
                             . "class='btn btn-primary btn-sm mb-1' target='blank'>
-                            <i class='ace-icon fa fa-print'></i>
                             Print
-                        </a> <a href='index.php?menu=view_rule_print&id_process=".$row['id']."' "
-                        . "class='btn btn-primary btn-sm' target='blank'>
-                        <i class='ace-icon fa fa-print'></i>
-                        Print
-                    </a>";
+                        </a> <button onclick=deletehasil('".$row["id"]."'); "
+                        . "class='btn btn-primary btn-sm'>
+                        delete
+                    </button>";
                             echo "</td>";
 //                            echo "<td>Jika ".$jika.", Maka ".$maka."</td>";
 //                            echo "<td>".price_format($row['confidence'])."</td>";

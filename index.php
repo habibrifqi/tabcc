@@ -361,6 +361,38 @@ include_once 'fungsi.php';
       $("#custom-tabs-one-itemset3").hide();
       console.log('sds');
       });
+
+      function deletehasil(id) {
+      var id = id;
+    console.log(id);
+    if (confirm("hapus?") == true) {
+        $.ajax({
+            url: '_hasil/delete_hasil.php',
+            data: {
+                'id': id
+            },
+            type: 'POST',
+            success: function (data) {
+              location.reload();
+                    // let dataAmbilAs = dataambil.substr(1);
+                    // const obj = JSON.parse(dataAmbilAs);
+                    // data = JSON.parse(data);
+                    // console.log(data.status);
+                // if (obj.status == 'success') {
+                    // menambah 0000 di id utnukbisa dihapus
+                    // var noid = id.toString();
+                    // var dd = noid.padStart(5, '0');
+                    // var ddd = "M";
+                    // ddd += dd;
+                    // $('#' + ddd).closest('tr').remove();
+                //     location.reload();
+                // } else {
+                //     alert('gagal menghapus');
+                // }
+            }
+        })
+    }
+}
     </script>
 
 

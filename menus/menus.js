@@ -9,6 +9,7 @@ $(document).ready(function () {
         'paging': 'true',
         'order': [],
         // order: [[1, 'asc']],
+        'responsive': true,
         'ajax': {
             'url': 'menus/fetch_data.php',
             'type': 'post',
@@ -24,7 +25,18 @@ $(document).ready(function () {
                 "aTargets": [4]
             },
 
-        ]
+        ],
+        "aoColumns": [{
+                "sWidth": "30px"
+
+            },
+            null,
+            null,
+            {
+                "sWidth": "90px",
+                "sClass": "dt-center"
+            }
+        ],
         // columnDefs: [{
         //   // 'target': [0, 5],
         //   // 'ordertable': true,

@@ -36,7 +36,7 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
                                     <th>ID</th>
                                     <th>nama_menu</th>
                                     <th>harga</th>
-                                    <th>Options</th>
+                                    <th class="options1">Options</th>
                                 </thead>
                                 <tbody>
                                 </tbody>

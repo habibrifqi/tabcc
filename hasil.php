@@ -62,7 +62,7 @@ $jumlah=$db_object->db_num_rows($query);
             }
             else{
             ?>
-            <table class='table table-bordered table-striped  table-hover'>
+            <table style="width:100% ;" class='table table-bordered table-responsive-sm'>
                 <tr>
                 <th>No</th>
                 <th>Start Date</th>

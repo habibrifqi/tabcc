@@ -194,8 +194,8 @@ $getmenu = $_POST['_get_menu'];
                                         <thead>
                                             <th>id</th>
                                             <th>tanggal</th>
-                                            <th style="max-width:450px ;">pesanan</th>
-                                            <th>Options</th>
+                                            <th>pesanan</th>
+                                            <th style="min-width: 90px ;">Options</th>
                                         </thead>
                                         <tbody>
                                         </tbody>

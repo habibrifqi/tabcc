@@ -35,6 +35,7 @@ $(document).ready(function () {
         'processing': 'true',
         'paging': 'true',
         'order': [],
+        'responsive': true,
         // order: [[1, 'asc']],
         'ajax': {
             'url': '_transaksi/fetch_data.php',

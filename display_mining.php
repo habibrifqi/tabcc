@@ -101,7 +101,7 @@ function display_process_hasil_mining($db_object, $id_process) {
     $query1 = $db_object->db_query($sql1);
     ?>
     Confidence dari itemset 3
-    <table class='table table-bordered table-striped  table-hover'>
+    <table class='table table-bordered table-striped  table-hover table-responsive-sm'>
         <tr>
         <th>No</th>
         <th>X => Y</th>
@@ -140,7 +140,7 @@ function display_process_hasil_mining($db_object, $id_process) {
     $query1 = $db_object->db_query($sql1);
     ?>
     Confidence dari itemset 2
-    <table class='table table-bordered table-striped  table-hover'>
+    <table class='table table-bordered table-striped  table-hover table-responsive-sm'>
         <tr>
         <th>No</th>
         <th>X => Y</th>
@@ -171,7 +171,7 @@ function display_process_hasil_mining($db_object, $id_process) {
     </table>
 
     <strong>Rule Asosiasi yang terbentuk:</strong>
-    <table class='table table-bordered table-striped  table-hover'>
+    <table class='table table-bordered table-striped  table-hover table-responsive-sm'>
         <tr>
             <th>No</th>
             <th>X => Y</th>
@@ -202,7 +202,7 @@ function display_process_hasil_mining($db_object, $id_process) {
         ?>
     </table>
 
-    <table class='table table-bordered table-striped  table-hover'>
+    <table class='table table-bordered table-striped  table-hover table-responsive-sm'>
         <tr>
             <th>No</th>
             <th>hasil</th>

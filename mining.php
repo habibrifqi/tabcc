@@ -135,7 +135,7 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
 
     <?php
     echo "<br><strong>Itemset 1:</strong><br>";
-    echo "<table class='table table-bordered table-striped  table-hover table1'>
+    echo "<table class='table table-bordered table-striped  table-hover table1 table-responsive-sm'>
             <tr>
                 <th>No</th>
                 <th>Item</th>
@@ -172,7 +172,7 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
     $db_object->db_query($sql_insert_itemset1);
     //display itemset yg lolos
     echo "<br><strong>Itemset 1 yang lolos:</strong><br>";
-    echo "<table class='table table-bordered table-striped  table-hover'>
+    echo "<table class='table table-bordered table-striped  table-hover table-responsive-sm'>
             <tr>
                 <th>No</th>
                 <th>Item</th>
@@ -199,7 +199,7 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
     aria-labelledby='custom-tabs-one-itemset2-tab'>";
     //build itemset2
     echo "<br><strong>Itemset 2:</strong><br>";
-    echo "<table class='table table-bordered table-striped  table-hover'>
+    echo "<table class='table table-bordered table-striped  table-hover table-responsive-sm'>
             <tr>
                 <th>No</th>
                 <th>Item1</th>
@@ -261,7 +261,7 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
     
     //display itemset yg lolos
     echo "<br><strong>Itemset 2 yang lolos:</strong><br>";
-    echo "<table class='table table-bordered table-striped  table-hover'>
+    echo "<table class='table table-bordered table-striped  table-hover table-responsive-sm'>
             <tr>
                 <th>No</th>
                 <th>Item 1</th>
@@ -286,7 +286,7 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
     echo "<div class='tab-pane fade' id='custom-tabs-one-itemset3' role='tabpanel'
     aria-labelledby='custom-tabs-one-itemset3-tab'>";
     echo "<br><strong>Itemset 3:</strong><br>";
-    echo "<table class='table table-bordered table-striped  table-hover'>
+    echo "<table class='table table-bordered table-striped  table-hover table-responsive-sm'>
             <tr>
                 <th>No</th>
                 <th>Item1</th>
@@ -379,7 +379,7 @@ function mining_process($db_object, $min_support, $min_confidence, $start_date, 
     
     //display itemset yg lolos
     echo "<br><strong>Itemset 3 yang lolos:</strong><br>";
-    echo "<table class='table table-bordered table-striped  table-hover'>
+    echo "<table class='table table-bordered table-striped  table-hover table-responsive-sm'>
             <tr>
                 <th>No</th>
                 <th>Item 1</th>

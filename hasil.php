@@ -31,7 +31,7 @@ if(isset($_GET['pesan_success'])){
 $sql = "SELECT
         *
         FROM
-         process_log ";
+         process_log  ORDER BY id DESC ";
 $query=$db_object->db_query($sql);
 $jumlah=$db_object->db_num_rows($query);
 ?>

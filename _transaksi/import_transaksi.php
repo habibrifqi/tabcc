@@ -15,12 +15,26 @@ include('connection.php');
             $open = fopen("../file/". date("d-m-Y-H-i-s-")."$datanama", 'r');
             while(($row = fgetcsv($open, 500, ';'))!==false){
                 // ganti format tanggal
-                $pecah_tanngal = explode("/",$row[0]);
+                $pecah_tanngal = explode("/",$row[1]);
                 $balik = array_reverse($pecah_tanngal);
                 $gabung = join("-",$balik);
                 $transaction_date = $gabung;
+                $pecah_transaksi = explode(",",$row[2]);
 
-                $sql = "INSERT INTO transaksi (transaction_date,produk) VALUES ('$transaction_date','$row[1]')";
+                $i = 0;
+
+                while($i < count($pecah_transaksi))
+                {
+                    $menu = ucwords($pecah_transaksi[$i]);
+                    
+                    $sql1 = "INSERT INTO menus (nama_menu,harga) VALUES ('$menu','0')";
+                    $query1 = mysqli_query($con,$sql1);
+                    $i++;
+                   
+                }
+                $pesanan_final = ucwords(ucwords($row[2]), '\',');
+                // echo "<pre>"; print_r($pecah_transaksi[$i]);die;
+                $sql = "INSERT INTO transaksi (transaction_date,produk) VALUES ('$transaction_date','$pesanan_final')";
                 $query = mysqli_query($con,$sql);
             }
             // var_dump($row);

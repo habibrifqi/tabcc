@@ -15,7 +15,7 @@ if (isset($_GET['menu'])) {
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-header">EXAMPLES</li>
+          <!-- <li class="nav-header">EXAMPLES</li> -->
           <li class="nav-item active">
             <a href="index.php" class="nav-link <?php echo ($menu_active == '') ? "active" : ""; ?>">
             <i class="fas fa-home"></i>

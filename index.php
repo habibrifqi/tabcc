@@ -12,6 +12,10 @@ if ($_GET['menu'] == 'proses_apriori') {
   $titlepage = "Proses Apriori";
 }else if($_GET['menu'] == 'hasil'){
   $titlepage = "Hasil Proses Apriori";
+}else if($_GET['menu'] == 'data_transaksi'){
+  $titlepage = "Data Transaksi";
+}else if($_GET['menu'] == 'menus'){
+  $titlepage = "Menu";
 }else if($_GET['menu'] == 'hasil' ||$_GET['id_process']){
   $titlepage = "Detail Hasil";
 }else {
@@ -120,11 +124,11 @@ include_once 'fungsi.php';
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0"><?= $titlepage ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active"><?= $titlepage ?></li>
               </ol>
             </div><!-- /.col -->

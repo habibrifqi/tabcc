@@ -112,7 +112,8 @@ if(isset($_POST['delete'])){
 $sql = "SELECT
         *
         FROM
-         transaksi";
+         transaksi 
+         ORDER BY id DESC";
 $query=$db_object->db_query($sql);
 $jumlah=$db_object->db_num_rows($query);
 
@@ -176,7 +177,29 @@ $getmenu = $_POST['_get_menu'];
                                         </button>
                                     </div>
                                     <div class="card-body">
+                                    <?php
+                                    if (!empty($pesan_error)) {
+                                        display_error($pesan_error);
+                                    }
+                                    if (!empty($pesan_success)) {
+                                        display_success($pesan_success);
+                                    }
 
+                                    echo "Jumlah data: ".$jumlah."<br>";
+                                    if($jumlah==0){
+                                        echo "Data kosong...";
+                                    }
+                                    ?>
+                                     <table id="tabletransaksi" class="table">
+                                        <thead>
+                                            <th>id</th>
+                                            <th>tanggal</th>
+                                            <th style="max-width:450px ;">pesanan</th>
+                                            <th>Options</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
                                     </div>
                                 </div>
                             </div>
@@ -194,39 +217,39 @@ $getmenu = $_POST['_get_menu'];
                         <div class="widget-body">
                             <div class="widget-main">
                                 <?php
-            if (!empty($pesan_error)) {
-                display_error($pesan_error);
-            }
-            if (!empty($pesan_success)) {
-                display_success($pesan_success);
-            }
+            // if (!empty($pesan_error)) {
+            // display_error($pesan_error);
+            // }
+            // if (!empty($pesan_success)) {
+            // display_success($pesan_success);
+            // }
 
-            echo "Jumlah data: ".$jumlah."<br>";
-            if($jumlah==0){
-                echo "Data kosong...";
-            }
-            else{
+            // echo "Jumlah data: ".$jumlah."<br>";
+            // if($jumlah==0){
+            // echo "Data kosong...";
+            // }
+            // else{
             ?>
-                                <table class='table table-bordered table-striped  table-hover'>
+                                <!-- <table class='table table-bordered table-striped  table-hover'> -->
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
                                         <th>Produk</th>
                                     </tr>
                                     <?php
-                    $no=1;
-                    while($row=$db_object->db_fetch_array($query)){
-                        echo "<tr>";
-                            echo "<td>".$no."</td>";
-                            echo "<td>".format_date2($row['transaction_date'])."</td>";
-                            echo "<td>".$row['produk']."</td>";
-                        echo "</tr>";
-                        $no++;
-                    }
+                    // $no=1;
+                    // while($row=$db_object->db_fetch_array($query)){
+                    //     echo "<tr>";
+                    //         echo "<td>".$no."</td>";
+                    //         echo "<td>".format_date2($row['transaction_date'])."</td>";
+                    //         echo "<td>".$row['produk']."</td>";
+                    //     echo "</tr>";
+                    //     $no++;
+                    // }
                     ?>
-                                </table>
+                                <!-- </table> -->
                                 <?php
-            }
+            
             ?>
                             </div>
                         </div>
@@ -272,7 +295,7 @@ function get_produk_to_in($produk){
                             <label>Date:</label>
                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                 <input type="text" class="form-control datetimepicker-input" 
-                                    data-target="#reservationdate" />
+                                    data-target="#reservationdate" required/>
                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -281,10 +304,13 @@ function get_produk_to_in($produk){
                     <div class="form-group">
                         <label>Multiple</label>
                         <select class="select2" multiple="multiple" data-placeholder="Select a State"
-                            style="width: 100%;" value="ss">
+                            style="width: 100%;" required>
                             <!-- <option selected disabled>all</option> -->
-                            <option>dd</option>
+                            <!-- <option>dd</option> -->
+                            <!-- <option>ed</option> -->
+                            <!-- <option>ss</option> -->
                             <!-- <option><?//= $getmenu[0][1] ?></option> -->
+                            <!-- <option>Nasgor Ori</option> -->
                             <?php 
                              foreach ($getmenu as $key) { ?>
                             <option><?= $key[1] ?></option>
@@ -336,3 +362,57 @@ function get_produk_to_in($produk){
     <!-- /.modal-dialog -->
 </div>
 
+
+
+
+<div class="modal fade" id="edit-transaksi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">edit Transaksi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editMenuForm" action="javascript:void();" method="POST">
+                    <input type="hidden" id="id" name="id" value="">
+                    <input type="hidden" id="trid" name="trid" value="">
+                    <div class="form-group">
+                    <label>Date:</label>
+                            <div class="input-group date" id="single_tanggal" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" 
+                                    data-target="#single_tanggal" required/>
+                                <div class="input-group-append" data-target="#single_tanggal" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                    <label>Multiple</label>
+                        <select class="single_select2" multiple="multiple" data-placeholder="Select a State"
+                            style="width: 100%;" required>
+                            <!-- <option selected disabled>all</option> -->
+                            <!-- <option>dd</option> -->
+                            <!-- <option>ed</option> -->
+                            <!-- <option>ss</option> -->
+                            <!-- <option><?//= $getmenu[0][1] ?></option> -->
+                            <!-- <option>Nasgor Ori</option> -->
+                            <?php 
+                             foreach ($getmenu as $key) { ?>
+                            <option><?= $key[1] ?></option>
+                            <?php   
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer justify-content-end">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

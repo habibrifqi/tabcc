@@ -79,6 +79,8 @@ include_once 'fungsi.php';
   <!-- Select2 -->
   <link rel="stylesheet" href="template/AdminLTE/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="template/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- css -->
+  <link rel="stylesheet" href="assets/css/style.css">
 
 
 </head>

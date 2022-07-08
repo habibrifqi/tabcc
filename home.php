@@ -1,26 +1,28 @@
 <div class="main-content">
     <div class="main-content-inner">
-        <div class="page-content">
-            <div class="page-header">
+        <div class="page-content tt">
+            <!--  -->
+            <!-- <div class="page-header">
                 <h1>
                     Halaman Utama
                 </h1>
-            </div><!-- /.page-header -->
-
-            <div class="row justify-content-center">
-                <div class="col-xs-12">
-                            <h1>APRIORI</h1>
-                      
-                            <h1>SKRIPSI</h1>
+            </div> -->
+            <!-- /.page-header -->
+            <section>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-bord card-body-home">
+                                <div class="judul-home">
+                                    <h2>Skripsi implementasi analisis algoritma apriori pada transaksi penjualan
+dan solusi di TEMANI NGOPI CAFE</h2>
+                                </div>
+                                <img src="assets/images/bg/background1.jpeg" alt="">
+                            </div>
+                        </div>
                     </div>
-
-                    </div><!-- /.row -->
-
-                    <div class="hr hr32 hr-dotted"></div>
-
-                    <!-- PAGE CONTENT ENDS -->
-                </div><!-- /.col -->
-            </div><!-- /.row -->
+                </div>
+            </section>
         </div><!-- /.page-content -->
     </div>
 </div><!-- /.main-content -->

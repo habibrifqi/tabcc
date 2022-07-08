@@ -62,7 +62,7 @@ $jumlah=$db_object->db_num_rows($query);
             }
             else{
             ?>
-            <table style="width:100% ;" class='table table-bordered table-responsive-sm'>
+            <table style="width:100% ;" class='table table-bordered table-responsive-sm' id="table-hasil">
                 <tr>
                 <th>No</th>
                 <th>Start Date</th>
@@ -70,7 +70,7 @@ $jumlah=$db_object->db_num_rows($query);
                 <th>Min Support</th>
                 <th>Min Confidence</th>
                 <th></th>
-                <th style="width: 100px ;text-align:center;">Pdf</th>
+                <th style="width: 100px ;text-align:center;">Options</th>
                 </tr>
                 <?php
                     $no=1;

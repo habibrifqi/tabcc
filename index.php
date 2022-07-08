@@ -73,9 +73,12 @@ include_once 'fungsi.php';
   <link rel="stylesheet" href="template/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"> -->
 
-    <!-- Select2 -->
-    <link rel="stylesheet" href="template/AdminLTE/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="template/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- sweet alert -->
+  <link rel="stylesheet" href="template/AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="template/AdminLTE/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="template/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
 
 </head>
@@ -83,10 +86,10 @@ include_once 'fungsi.php';
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-  <!-- Animasi Loading Page -->
+    <!-- Animasi Loading Page -->
     <!-- Preloader -->
     <!-- <div class="preloader flex-column justify-content-center align-items-center"> -->
-      <!-- <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60"> -->
+    <!-- <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60"> -->
     <!-- </div> -->
 
     <!-- Navbar -->
@@ -241,7 +244,10 @@ include_once 'fungsi.php';
   <script src="template/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 
   <!-- Select2 -->
-<script src="template/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
+  <script src="template/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
+  <!-- sweet alaert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="template/AdminLTE/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 
 
@@ -314,89 +320,100 @@ include_once 'fungsi.php';
   </script>
   <?php
     if ( $_GET['menu'] == 'menus') : ?>
-    <script src="menus/menus.js"></script>
-    <?php endif ?>
+  <script src="menus/menus.js"></script>
+  <?php endif ?>
 
-    <?php
+  <?php
     if ( $_GET['menu'] == 'data_transaksi') : ?>
-    <script src="_transaksi/_transaksi.js"></script>
-    <?php endif ?>
+  <script src="_transaksi/_transaksi.js"></script>
+  <?php endif ?>
 
-    <script>
-      // $("#custom-tabs-one-home").hide();
-      $(document).ready(function () {
-        $("#custom-tabs-one-itemset1").show();
-        $("#custom-tabs-one-itemset2").hide();
-        $("#custom-tabs-one-itemset3").hide();
-        $("#custom-tabs-one-confident").hide();
-      });
-      $("#custom-tabs-one-itemset1-tab").click(function(){
+  <script>
+    // $("#custom-tabs-one-home").hide();
+    $(document).ready(function () {
+      $("#custom-tabs-one-itemset1").show();
+      $("#custom-tabs-one-itemset2").hide();
+      $("#custom-tabs-one-itemset3").hide();
+      $("#custom-tabs-one-confident").hide();
+    });
+    $("#custom-tabs-one-itemset1-tab").click(function () {
       $("#custom-tabs-one-itemset1").show();
       $("#custom-tabs-one-itemset2").hide();
       $("#custom-tabs-one-itemset3").hide();
       $("#custom-tabs-one-confident").hide();
       console.log('sds');
-      });
+    });
 
-      $("#custom-tabs-one-itemset2-tab").click(function(){
+    $("#custom-tabs-one-itemset2-tab").click(function () {
       $("#custom-tabs-one-itemset2").show();
       $("#custom-tabs-one-itemset1").hide();
       $("#custom-tabs-one-itemset3").hide();
       $("#custom-tabs-one-confident").hide();
       console.log('sds');
-      });
+    });
 
-      $("#custom-tabs-one-itemset3-tab").click(function(){
+    $("#custom-tabs-one-itemset3-tab").click(function () {
       $("#custom-tabs-one-itemset3").show();
       $("#custom-tabs-one-itemset1").hide();
       $("#custom-tabs-one-itemset2").hide();
       $("#custom-tabs-one-confident").hide();
       console.log('sds');
-      });
+    });
 
-      $("#custom-tabs-one-confident-tab").click(function(){
+    $("#custom-tabs-one-confident-tab").click(function () {
       $("#custom-tabs-one-confident").show();
       $("#custom-tabs-one-itemset1").hide();
       $("#custom-tabs-one-itemset2").hide();
       $("#custom-tabs-one-itemset3").hide();
       console.log('sds');
-      });
+    });
 
-      function deletehasil(id) {
+    function deletehasil(id) {
       var id = id;
-    console.log(id);
-    if (confirm("hapus?") == true) {
+      console.log(id);
+      if (confirm("hapus?") == true) {
         $.ajax({
-            url: '_hasil/delete_hasil.php',
-            data: {
-                'id': id
-            },
-            type: 'POST',
-            success: function (data) {
-              location.reload();
-                    // let dataAmbilAs = dataambil.substr(1);
-                    // const obj = JSON.parse(dataAmbilAs);
-                    // data = JSON.parse(data);
-                    // console.log(data.status);
-                // if (obj.status == 'success') {
-                    // menambah 0000 di id utnukbisa dihapus
-                    // var noid = id.toString();
-                    // var dd = noid.padStart(5, '0');
-                    // var ddd = "M";
-                    // ddd += dd;
-                    // $('#' + ddd).closest('tr').remove();
-                //     location.reload();
-                // } else {
-                //     alert('gagal menghapus');
-                // }
+          url: '_hasil/delete_hasil.php',
+          type: 'POST',
+          data: {
+            'id': id
+          },
+          success: function (data) {
+            // location.reload();
+            // let dataAmbilAs = dataambil.substr(1);
+            var json = JSON.parse(data);
+            status = json.status;
+            console.log(status);
+            if (status == 'true') {
+            //menambah 0000 di id utnukbisa dihapus
+            // $('#table-hasil').reload();
+            swal.fire({
+                            title: "Import Berhasil",
+                            text: "Data Berhasil Ditambah",
+                            icon: "success",
+                            timer: 2000,
+                            // showCancelButton: true,
+                            // confirmButtonColor: "#DD6B55",
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false,
+                            
+                        });
+                        
+                        setTimeout(function(){
+                    window.location.reload(); // you can pass true to reload function to ignore the client cache and reload from the server
+                },2100);
+                // 
+            } else {
+                alert('gagal menghapus');
             }
+          }
         })
+      }
     }
-}
-    </script>
+  </script>
 
 
-  
+
 
 </body>
 

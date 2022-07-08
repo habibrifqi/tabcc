@@ -11,11 +11,12 @@ include_once "mining.php";
 <div class="main-content">
     <div class="main-content-inner">
         <div class="page-content">
-            <div class="page-header">
-                <h1>
+            <!-- <div class="page-header"> -->
+                <!-- <h1>
                     Hasil
                 </h1>
-            </div><!-- /.page-header -->
+            </div> -->
+            <!-- /.page-header -->
 <?php
 //object database class
 $db_object = new database();
@@ -37,10 +38,9 @@ $jumlah=$db_object->db_num_rows($query);
 ?>
 
 <div class="row">
-    <div class="col-sm-12">
-        <div class="widget-box">
-            <div class="widget-body">
-                <div class="widget-main">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
 <!--            <form method="post" action="">
                 <div class="form-group">
                     <input name="submit" type="submit" value="Proses" class="btn btn-success">
@@ -62,7 +62,7 @@ $jumlah=$db_object->db_num_rows($query);
             }
             else{
             ?>
-            <table style="width:100% ;" class='table table-bordered table-responsive-sm' id="table-hasil">
+            <table style="width:100% ;" class='table table-bordered table-responsive-sm table table-bordered table-hover dataTable dtr-inline' id="table-hasil">
                 <tr>
                 <th>No</th>
                 <th>Start Date</th>
@@ -102,7 +102,7 @@ $jumlah=$db_object->db_num_rows($query);
                             . "class='btn btn-primary btn-sm mb-1' target='blank'>
                             Print
                         </a> <button onclick=deletehasil('".$row["id"]."'); "
-                        . "class='btn btn-primary btn-sm'>
+                        . "class='btn btn-danger btn-sm'>
                         delete
                     </button>";
                             echo "</td>";
@@ -118,6 +118,9 @@ $jumlah=$db_object->db_num_rows($query);
             ?>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 </div>

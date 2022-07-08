@@ -219,7 +219,7 @@ function display_process_hasil_mining($db_object, $id_process) {
 //            $maka = implode(" Dan ", $kom2);
             echo "<tr>";
             echo "<td>" . $no . "</td>";
-            echo "<td>jika konsumen membeli" . $val['kombinasi1']." maka konsumen juga akan membeli ".$val['kombinasi2'] . "</td>";
+            echo "<td>jika konsumen membeli " . $val['kombinasi1']." maka konsumen juga akan membeli ".$val['kombinasi2'] . "</td>";
         
             echo "</tr>";
             $no++;

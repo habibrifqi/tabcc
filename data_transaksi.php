@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 if (!isset($_SESSION['apriori_tncs_id'])) {
     header("location:index.php?menu=forbidden");
 }
@@ -7,16 +7,18 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
 include_once "database.php";
 include_once "fungsi.php";
 include_once "_transaksi/_get_menu.php";
+// include_once "_transaksi/import_transaksi.php";
 // include_once "import/excel_reader2.php";s
 ?>
 <div class="main-content">
     <div class="main-content-inner">
         <div class="page-content">
-            <div class="page-header">
+            <!-- <div class="page-header">
                 <h1>
                     Data Transaksi
                 </h1>
-            </div><!-- /.page-header -->
+            </div> -->
+            <!-- /.page-header -->
             <?php
 //object database class
 $db_object = new database();
@@ -28,6 +30,14 @@ if(isset($_GET['pesan_error'])){
 if(isset($_GET['pesan_success'])){
     $pesan_success = $_GET['pesan_success'];
 }
+$pp = '';
+if($_SESSION["dd"]){
+    $pp = $_SESSION["dd"];
+    // echo $pp;
+    $_SESSION["dd"] = '';
+    // echo '<pre>';print_r($pp);
+}
+
 
 if(isset($_POST['submit'])){
     // if(!$input_error){
@@ -132,32 +142,7 @@ $getmenu = $_POST['_get_menu'];
 //     ]
 // ]
 ?>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="widget-box">
-                        <!--UPLOAD EXCEL FORM-->
-                        <form method="post" enctype="multipart/form-data" action="">
-                            <div class="widget-body">
-                                <div class="widget-main">
-                                    <div class="form-group">
-                                        <input type="file" id="id-input-file-2" name="file_data_transaksi" />
-
-                                        <button name="submit" type="submit" value=""
-                                            class="btn btn-app btn-purple btn-sm">
-                                            <i class="ace-icon fa fa-cloud-upload bigger-200"></i> Upload
-                                        </button>
-                                        <button name="delete" type="submit" class="btn btn-app btn-danger btn-sm"
-                                            onclick="return confirm('Are you sure?')">
-                                            <i class="ace-icon fa fa-trash-o bigger-200"></i> Delete
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
+<input type="hidden" name="pesan" id="pesan" value="<?= $pp ?>">
             <div class="main-content">
                 <div class="main-content-inner">
                     <div class="page-content">
@@ -343,7 +328,8 @@ function get_produk_to_in($produk){
                 </button>
             </div>
             <div class="modal-body">
-                <form action="_transaksi/import_transaksi.php" method="POST" enctype='multipart/form-data'>
+            <!-- javascript:void(); -->
+                <form id="import" action="_transaksi/import_transaksi.php" method="POST" enctype='multipart/form-data' >
                     <!-- <h1>asdasd</h1> -->
                     <div class="form-group">
                         <label>Import</label>

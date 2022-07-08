@@ -1,6 +1,7 @@
 <?php 
 include('connection.php');
-// if(isset($_POST['submit'])){
+session_start();
+if(isset($_POST['submit'])){
     $datanama = $_FILES['data']['name'];
     $datatmp = $_FILES['data']['tmp_name'];
     $exe = pathinfo($datanama, PATHINFO_EXTENSION);
@@ -45,15 +46,19 @@ include('connection.php');
             // echo $open ;
             // echo " b b b b b "; 
             // print_r($row);
+            $_SESSION['dd'] = "csv";
             header('location:../index.php?menu=data_transaksi');
             // return ''
         }else{
             echo 'gagal upload';
         }
     }else{
-        echo "bukan csv";
+        $_SESSION['dd'] = "bukan csv";
+        header('location:../index.php?menu=data_transaksi');
     }
-// }
+}
+// $_SESSION['dd'] = "";
+
 
 
 ?>

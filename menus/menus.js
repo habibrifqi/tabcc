@@ -55,9 +55,28 @@ $(document).ready(function () {
     }).draw();
 
 
-    $("#editbtn").click(function () {
-        alert("Handler fo");
+    $('.swalDefaultSuccess').click(function () {
+        console.log('asdasd');
+        // Toast.fire({
+        //     icon: 'success',
+        //     title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+        // });
+        swal.fire({
+            title: "Berhasil!",
+            text: "Menu Berhasil ditambahkan",
+            icon: "success",
+            timer: 2000,
+            // showCancelButton: true,
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false
+        });
+        // Swal.fire(
+        //     'Deleted!',
+        //     'Your file has been deleted.',
+        //     'success',
 
+        // )
     });
 
 });
@@ -119,8 +138,27 @@ $(document).ready(function () {
                         $('#tambah-menu').modal('hide');
                         $("#tambah_harga").val("");
                         $("#tambah_nama_menu").val("");
+                        swal.fire({
+                            title: "Berhasil!",
+                            text: "Menu Berhasil ditambahkan",
+                            icon: "success",
+                            timer: 2000,
+                            // showCancelButton: true,
+                            // confirmButtonColor: "#DD6B55",
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false
+                        });
                     } else {
-                        alert('failed');
+                        swal.fire({
+                            title: "Gagal!",
+                            text: "Menu Sudah Terdaftar",
+                            icon: "error",
+                            timer: 2000,
+                            // showCancelButton: true,
+                            // confirmButtonColor: "#DD6B55",
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false
+                        });
                     }
                 }
             });
@@ -156,9 +194,28 @@ $(document).on('submit', '#editMenuForm', function (event) {
                 // var button = '<button  onclick=editForm(`'+id+'`); data-id="'+id+'" class="btn btn-info btn-sm editbtn" id=`"editbtn"`>Edit</button> <button  onclick=deletemenus(`'+id+'`); data-id="'+id+'" class="btn btn-danger btn-sm deletebtnMenu" id=`"deletebtnMenu"`>delete</button> '
                 // var row = table.row("[id='" + trid + "']");
                 // row.row("[id='" + trid + "']").data([id, nama_menu, harga, button]);
+                swal.fire({
+                    title: "Update Berhasil!",
+                    text: "Menu Berhasil Diupdate",
+                    icon: "success",
+                    timer: 2000,
+                    // showCancelButton: true,
+                    // confirmButtonColor: "#DD6B55",
+                    showCancelButton: false, // There won't be any cancel button
+                    showConfirmButton: false
+                });
             } else {
-                $('#edit-menu').modal('hide');
-                alert('data sudah terpakai');
+                // $('#edit-menu').modal('hide');
+                swal.fire({
+                    title: "Update Menu Gagal",
+                    text: "Menu Sudah Terdaftar",
+                    icon: "error",
+                    timer: 2000,
+                    // showCancelButton: true,
+                    // confirmButtonColor: "#DD6B55",
+                    showCancelButton: false, // There won't be any cancel button
+                    showConfirmButton: false
+                });
             }
         }
     })
@@ -168,29 +225,71 @@ $(document).on('submit', '#editMenuForm', function (event) {
 // delete menu
 function deletemenu(id) {
     var id = id;
-    if (confirm("hapus?") == true) {
-        $.ajax({
-            url: 'menus/delete_menu.php',
-            data: {
-                'id': id
-            },
-            type: 'POST',
-            success: function (data) {
+    // if (confirm("hapus?") == true) {
+    //     $.ajax({
+    //         url: 'menus/delete_menu.php',
+    //         data: {
+    //             'id': id
+    //         },
+    //         type: 'POST',
+    //         success: function (data) {
 
-                var json = JSON.parse(data);
-                var status = json.status;
-                if (status == 'success') {
-                    // menambah 0000 di id utnukbisa dihapus
-                    var noid = id.toString();
-                    var dd = noid.padStart(5, '0');
-                    var ddd = "M";
-                    ddd += dd;
-                    $('#' + ddd).closest('tr').remove();
-                } else {
-                    alert('gagal menghapus');
+    //             var json = JSON.parse(data);
+    //             var status = json.status;
+    //             if (status == 'success') {
+    //                 // menambah 0000 di id utnukbisa dihapus
+    //                 var noid = id.toString();
+    //                 var dd = noid.padStart(5, '0');
+    //                 var ddd = "M";
+    //                 ddd += dd;
+    //                 $('#' + ddd).closest('tr').remove();
+    //             } else {
+    //                 alert('gagal menghapus');
+    //             }
+    //         }
+    //     })
+    // }
+    Swal.fire({
+        title: 'Hapus Menu ?',
+        text: "Menu Akan Dihapus",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            $.ajax({
+                url: 'menus/delete_menu.php',
+                data: {
+                    'id': id
+                },
+                type: 'POST',
+                success: function (data) {
+
+                    var json = JSON.parse(data);
+                    var status = json.status;
+                    if (status == 'success') {
+                        // menambah 0000 di id utnukbisa dihapus
+                        var noid = id.toString();
+                        var dd = noid.padStart(5, '0');
+                        var ddd = "M";
+                        ddd += dd;
+                        $('#' + ddd).closest('tr').remove();
+                    } else {
+                        alert('gagal menghapus');
+                    }
                 }
-            }
-        })
-    }
+            })
+
+
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
 }
 // delete menu end

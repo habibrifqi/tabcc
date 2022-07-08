@@ -132,6 +132,16 @@ $(document).on('submit', '#edit-transaksi', function (event) {
                 var t = $('#tabletransaksi').DataTable();
                 t.draw();
                 $('#edit-transaksi').modal('hide');
+                swal.fire({
+                    title: "Update Berhasil!",
+                    text: "Transaksi Berhasil Diupdate",
+                    icon: "success",
+                    timer: 2000,
+                    // showCancelButton: true,
+                    // confirmButtonColor: "#DD6B55",
+                    showCancelButton: false, // There won't be any cancel button
+                    showConfirmButton: false
+                });
             } else {
                 $('#edit-transaksi').modal('hide');
                 alert('data sudah terpakai');
@@ -179,6 +189,16 @@ $(document).ready(function () {
                         $('#tambah-transaksi').modal('hide');
                         $("#reservationdate").find("input").val([""]);
                         // $("#select2").val("");
+                        swal.fire({
+                            title: "Berhasil",
+                            text: "Transaksi Berhasil Ditambah",
+                            icon: "success",
+                            timer: 2000,
+                            // showCancelButton: true,
+                            // confirmButtonColor: "#DD6B55",
+                            showCancelButton: false, // There won't be any cancel button
+                            showConfirmButton: false
+                        });
 
                     } else {
                         alert('failed');
@@ -197,30 +217,58 @@ $(document).ready(function () {
 // delete transaksi
 function deletemenu(id) {
     var id = id;
-    if (confirm("hapus?") == true) {
-        $.ajax({
-            url: '_transaksi/delete_transaksi.php',
-            data: {
-                'id': id
-            },
-            type: 'POST',
-            success: function (data) {
+    // if (confirm("hapus?") == true) {
 
-                var json = JSON.parse(data);
-                var status = json.status;
-                if (status == 'success') {
-                    // menambah 0000 di id utnukbisa dihapus
-                    var noid = id.toString();
-                    var dd = noid.padStart(5, '0');
-                    var ddd = "T";
-                    ddd += dd;
-                    $('#' + ddd).closest('tr').remove();
-                } else {
-                    alert('gagal menghapus');
+    // }
+
+    Swal.fire({
+        title: 'Hapus Transaksi ?',
+        text: "Transaksi Akan Dihapus",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus',
+        // timer: 2000,
+        // showCancelButton: true,
+        // confirmButtonColor: "#DD6B55",
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            $.ajax({
+                url: '_transaksi/delete_transaksi.php',
+                data: {
+                    'id': id
+                },
+                type: 'POST',
+                success: function (data) {
+
+                    var json = JSON.parse(data);
+                    var status = json.status;
+                    if (status == 'success') {
+                        // menambah 0000 di id utnukbisa dihapus
+                        var noid = id.toString();
+                        var dd = noid.padStart(5, '0');
+                        var ddd = "T";
+                        ddd += dd;
+                        $('#' + ddd).closest('tr').remove();
+                    } else {
+                        alert('gagal menghapus');
+                    }
                 }
-            }
-        })
-    }
+            })
+            swal.fire({
+                title: "Berhasil",
+                text: "Transaksi Berhasil Dihapus",
+                icon: "success",
+                timer: 2000,
+                // showCancelButton: true,
+                // confirmButtonColor: "#DD6B55",
+                showCancelButton: false, // There won't be any cancel button
+                showConfirmButton: false
+            });
+        }
+    })
 }
 
 $(function () {
@@ -229,4 +277,68 @@ $(function () {
     });
     console.log(ss);
     $(".select2").select2().select2('val', '1');
+});
+
+// $(document).on('submit', '#import', function (event) {
+
+
+//     var data = $("#data").val();
+
+//     $.ajax({
+//         url: "_transaksi/import_transaksi.php",
+//         type: "post",
+//         data: {
+//             'data': data,
+//         },
+//         success: function (data) {
+//             dataambil = data;
+//             // let dataAmbilAs = dataambil.substr(1);
+//             // const obj = JSON.parse(dataAmbilAs);
+//             // // const obj = JSON.parse(data);
+//             console.log(dataambil);
+
+//             // if (obj.status == 'true') {
+//             //     var t = $('#tabletransaksi').DataTable();
+//             //     t.draw();
+//             //     $('#tambah-transaksi').modal('hide');
+//             //     $("#reservationdate").find("input").val([""]);
+//             //     // $("#select2").val("");
+
+//             // } else {
+//             //     alert('failed');
+//             // }
+//         }
+//     });
+//     // return false;
+// })
+$(document).ready(function () {
+    var tt = $("#pesan").val();
+    // console.log(tt);
+    if (tt == 'bukan csv') {
+        $("#pesan").val("");
+        swal.fire({
+            title: "Gagal Import! Periksa Kembali Format",
+            text: "Format File Harus Csv",
+            icon: "error",
+            timer: 2000,
+            // showCancelButton: true,
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false
+        });
+    }
+
+    if (tt == 'csv') {
+        $("#pesan").val("");
+        swal.fire({
+            title: "Import Berhasil",
+            text: "Data Berhasil Ditambah",
+            icon: "success",
+            timer: 2000,
+            // showCancelButton: true,
+            // confirmButtonColor: "#DD6B55",
+            showCancelButton: false, // There won't be any cancel button
+            showConfirmButton: false
+        });
+    }
 });

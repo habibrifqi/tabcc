@@ -12,11 +12,12 @@ include_once "display_mining.php";
 <div class="main-content">
     <div class="main-content-inner">
         <div class="page-content">
-            <div class="page-header">
+            <!-- <div class="page-header">
                 <h1>
                     Proses Apriori
                 </h1>
-            </div><!-- /.page-header -->
+            </div> -->
+            <!-- /.page-header -->
 
             <?php
 //object database class

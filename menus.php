@@ -26,6 +26,9 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
                                 data-target="#tambah-menu">
                                 Tambah Menu
                             </button>
+                            <button type="button" class="btn btn-success swalDefaultSuccess">
+Launch Success Toast
+</button>
                             <?php
                             echo sprintf("M"."%0". 5 . "s",10)
                             ?>

@@ -7,7 +7,7 @@ function can_access_menu($menu){
     if($_SESSION['apriori_tncs_level']==1){
         return true;
     }
-    return false;
+    return true;
 }
 //START USERS===================================================================
 /**

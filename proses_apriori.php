@@ -3,7 +3,7 @@
 if (!isset($_SESSION['apriori_tncs_id'])) {
     header("location:index.php?menu=forbidden");
 }
-
+ini_set('max_execution_time', 0);
 include_once "database.php";
 include_once "fungsi.php";
 include_once "mining.php";

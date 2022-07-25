@@ -6,9 +6,9 @@ if (isset($_GET['menu'])) {
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="https://image.similarpng.com/very-thumbnail/2020/11/Coffee-logo-design-on-transparent-background-PNG.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Temani Ngopi Cafe</span>
+    <a href="index.php" class="brand-link">
+      <img src="assets/images/logo/tn1.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light text-logo-menu">TEMANI NGOPI CAFE</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -24,8 +24,8 @@ if (isset($_GET['menu'])) {
           </li>
           <li class="nav-item active">
             <a href="index.php?menu=menus" class="nav-link <?php echo ($menu_active == 'menus') ? "active" : ""; ?>">
-            <i class="fas fa-home"></i>
-              <p>Menu</p>
+            <i class="fas fa-utensils"></i>
+              <p> Menu</p>
             </a>
           </li>
           <li class="nav-item active">

@@ -25,7 +25,10 @@ include_once "fungsi.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
+    
+    <!-- <link rel=”icon” href=''> -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/tn1.png" />
+    <title>Login TSkripsi</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -36,17 +39,22 @@ include_once "fungsi.php";
     <link rel="stylesheet" href="template/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="template/AdminLTE/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
+        <!-- <div class="login-logo">
             <a href="template/AdminLTE/index2.html"><b>Admin</b>LTE</a>
-        </div>
+            
+        </div> -->
         <!-- /.login-logo -->
-        <div class="card">
+        <div class="card card-login">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+            <!-- <img src="assets/images/logo/tn1.png" alt="AdminLTE Logo" class="brand-image img-circle img-logo-login" id="img-logo-login" style="opacity: .8"> -->
+                <!-- <p class="login-box-msg">Sign in to start your session</p> -->
+                <h3 class="login-box-msg" style="text-align: center;">Login</h3>
                 <form method="post" action="cek-login.php">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="username" name="username">
@@ -81,7 +89,7 @@ include_once "fungsi.php";
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="btn-login">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -89,12 +97,12 @@ include_once "fungsi.php";
 
                 <!-- /.social-auth-links -->
 
-                <p class="mb-1">
+                <!-- <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
                 </p>
                 <p class="mb-0">
                     <a href="register.html" class="text-center">Register a new membership</a>
-                </p>
+                </p> -->
             </div>
             <!-- /.login-card-body -->
         </div>
@@ -107,6 +115,20 @@ include_once "fungsi.php";
     <script src="template/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="template/AdminLTE/dist/js/adminlte.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+    <!-- <script>
+$('.form-control').on('click', function(e){
+  e.preventDefault();
+//   $(this).css('border-color', '#c4996c');
+$(this).toggleClass('color');
+console.log('sdsd');
+});
+
+
+    </script> -->
 </body>
 
 </html>

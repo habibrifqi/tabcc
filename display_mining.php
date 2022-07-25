@@ -136,7 +136,8 @@ function display_process_hasil_mining($db_object, $id_process) {
     $sql1 = "SELECT * FROM confidence "
                 . " WHERE id_process = ".$id_process
                 . " AND from_itemset=2 "
-                ;//. " ORDER BY lolos DESC";
+                ;
+                //. " ORDER BY lolos DESC";
     $query1 = $db_object->db_query($sql1);
     ?>
     Confidence dari itemset 2
@@ -175,16 +176,23 @@ function display_process_hasil_mining($db_object, $id_process) {
         <tr>
             <th>No</th>
             <th>X => Y</th>
+            <th>support X U Y</th>
+            <th>support X</th>
             <th>Confidence</th>
             <th>Nilai Uji lift</th>
             <th>Korelasi rule</th>
             <!-- <th></th> -->
         </tr>
         <?php
-        
+         if(!$data_confidence){
+            echo "<tr >";
+            echo "<td colspan='7' style = 'text-align:center'>Tidak ada aturan yang terbentuk</td>";
+            echo "<tr>";
+        }else{
         $no = 1;
         //while ($row1 = $db_object->db_fetch_array($query1)) {
         foreach($data_confidence as $key => $val){
+            
 //            $kom1 = explode(" , ", $row1['kombinasi1']);
 //            $jika = implode(" Dan ", $kom1);
 //            $kom2 = explode(" , ", $row1['kombinasi2']);
@@ -192,6 +200,8 @@ function display_process_hasil_mining($db_object, $id_process) {
             echo "<tr>";
             echo "<td>" . $no . "</td>";
             echo "<td>" . $val['kombinasi1']." => ".$val['kombinasi2'] . "</td>";
+            echo "<td>".price_format($val['support_xUy'])."</td>";
+            echo "<td>".price_format($val['support_x'])."</td>";
             echo "<td>" . price_format($val['confidence']) . "</td>";
             echo "<td>" . price_format($val['nilai_uji_lift']) . "</td>";
             echo "<td>" . ($val['korelasi_rule']) . "</td>";
@@ -199,6 +209,7 @@ function display_process_hasil_mining($db_object, $id_process) {
             echo "</tr>";
             $no++;
         }
+    }
         ?>
     </table>
 

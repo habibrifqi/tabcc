@@ -175,7 +175,7 @@ if (isset($_POST['submit'])) {
                 <?php
 
 
-        echo "Min Support Absolut: " . $_POST['min_support'];
+        // echo "Min Support Absolut: " . $_POST['min_support'];
         echo "<br>";
         $sql = "SELECT COUNT(*) FROM transaksi 
         WHERE transaction_date BETWEEN '$start' AND '$end' ";
@@ -184,7 +184,7 @@ if (isset($_POST['submit'])) {
         // $minSupportRelatif = ($_POST['min_support']/$num[0]) * 100;
         $minSupportRelatif = $_POST['min_support'];
         // echo "Min Support Relatif: " . $minSupportRelatif;
-        echo "Min Support Relatif: " . $minSupportRelatif;
+        echo "Min Support: " . $minSupportRelatif;
         echo "<br>";
         echo "Min Confidence: " . $_POST['min_confidence'];
         echo "<br>";
@@ -272,7 +272,7 @@ else {
                                 <input name="min_support" type="text" class="form-control" placeholder="Min Support">
                             </div>
                             <div class="form-group">
-                                <label>Min Support: </label>
+                                <label>Min Confident: </label>
                                 <input name="min_confidence" type="text" class="form-control"
                                     placeholder="Min Confidence">
                             </div>

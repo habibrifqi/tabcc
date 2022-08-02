@@ -390,8 +390,8 @@ include_once 'fungsi.php';
             //menambah 0000 di id utnukbisa dihapus
             // $('#table-hasil').reload();
             swal.fire({
-                            title: "Import Berhasil",
-                            text: "Data Berhasil Ditambah",
+                            title: "Hapus Berhasil",
+                            text: "Riwayat telah terhapus",
                             icon: "success",
                             timer: 2000,
                             // showCancelButton: true,

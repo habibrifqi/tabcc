@@ -34,8 +34,8 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
                             <table id="tablemenus" class="table">
                                 <thead>
                                     <th>ID</th>
-                                    <th>nama_menu</th>
-                                    <th>harga</th>
+                                    <th>Nama menu</th>
+                                    <th>Harga</th>
                                     <th class="options1">Options</th>
                                 </thead>
                                 <tbody>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Default Modal</h4>
+                <h4 class="modal-title">Tambah Menu</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -92,7 +92,7 @@ if (!isset($_SESSION['apriori_tncs_id'])) {
             <div class="modal-body">
                 <form id="editMenuForm" action="javascript:void();" method="POST">
                     <input type="hidden" id="id" name="id" value="">
-                    <input type="text" id="trid" name="trid" value="">
+                    <input type="hidden" id="trid" name="trid" value="">
                     <div class="form-group">
                         <label for="_nama_menu">Nama Menu</label>
                         <input type="text" class="form-control" id="_nama_menu" placeholder="Nama Menu" autofocus>

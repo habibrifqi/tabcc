@@ -286,7 +286,7 @@ function deletemenu(id) {
 
             Swal.fire(
                 'Deleted!',
-                'Your file has been deleted.',
+                'Menu berhasil dihapus',
                 'success'
             )
         }
